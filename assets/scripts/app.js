@@ -3,5 +3,7 @@
 const gameLogic = require('./game-logic')
 
 $(() => {
-  $('.box').on('click', gameLogic.makeMove)
+  gameLogic.setGame()
+  // $('.box').on('click', gameLogic.makeMove)
+  $('#reset-button').on('click', gameLogic.setGame)
 })
