@@ -3,5 +3,5 @@
 const gameLogic = require('./game-logic')
 
 $(() => {
-  gameLogic.createGame()
+  $('.box').on('click', gameLogic.makeMove)
 })
