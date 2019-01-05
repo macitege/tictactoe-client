@@ -1,3 +1,5 @@
+const ui = require('./ui')
+
 // Array  taht represents cells on the game board
 let cells = ['', '', '', '', '', '', '', '', '']
 // Variable that holds last players info, so that engine can check who was the last player
@@ -7,25 +9,8 @@ let lastPlayer = null
 const setGame = function () {
   cells = ['', '', '', '', '', '', '', '', '']
   lastPlayer = null
-  $('.game-board').html(`
-    <div class="row">
-      <div id="0" class="box"></div>
-      <div id="1" class="box"></div>
-      <div id="2" class="box"></div>
-    </div>
-    <div class="row">
-      <div id="3" class="box"></div>
-      <div id="4" class="box"></div>
-      <div id="5" class="box"></div>
-    </div>
-    <div class="row">
-      <div id="6" class="box"></div>
-      <div id="7" class="box"></div>
-      <div id="8" class="box"></div>
-    </div>
-    `)
+  ui.setBoard()
   $('.box').on('click', makeMove)
-  $('#message').text('')
 }
 
 // Function that allows user to make move
@@ -34,15 +19,15 @@ const makeMove = function (event) {
   const id = event.target.id
   // Condition to check if the box is empty and who wast the last player?
   if (cells[id] !== '') {
-    alert('play on another cell')
+    ui.alertPlayer()
   } else if (lastPlayer === 'o' || lastPlayer === null) {
     cells[id] = 'x'
     lastPlayer = 'x'
-    $('#' + id).text('x')
+    ui.putX(id)
   } else {
     cells[id] = 'o'
     lastPlayer = 'o'
-    $('#' + id).text('o')
+    ui.putO(id)
   }
   whoWon()
 }
@@ -68,18 +53,16 @@ const whoWon = function () {
   for (const track in winnerTracks) {
     // Reduces winner tracks down to a string consist of "x"s and "o"s
     const trackValue = winnerTracks[track].reduce(isSame)
+    const winner = winnerTracks[track][0][0]
     // if there is a match
     if (trackValue === 'xxx' || trackValue === 'ooo') {
-      console.log(track + 'won')
-      $('#message').text('Somebody Won!!')
-      $('.box').off('click', makeMove)
+      ui.onWinner(winner)
       break
       /* If the last move was the winner move, break would end the condition here.
       If there was no break keyword, 2nd block would run and overwrite winner
       message in #message area */
     } else if (!cells.includes('')) {
-      $('#message').text('DRAW!!')
-      $('.box').off('click', makeMove)
+      ui.onDraw()
     }
   }
 }
