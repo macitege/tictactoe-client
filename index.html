@@ -23,7 +23,7 @@
           <form id="sign-up">
             <div class="form-group">
               <label for="exampleInputEmail1">Sign Up to Play</label>
-              <input id="email-up" name="credentials[email]" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <input id="email-up" name="credentials[email]" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
             <div class="form-group">
               <input name="credentials[password]" type="password" class="form-control password-up" id="exampleInputPassword1" placeholder="Password">
@@ -31,20 +31,20 @@
             <div class="form-group">
               <input name="credentials[password_confirmation]" type="password" class="form-control password-up" id="exampleInputPasswordConfirm1" placeholder="Confirm Password">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Register</button>
           </form>
         </section>
 
         <section class="sign-in-wrapper">
-          <form>
+          <form id="sign-in">
             <div class="form-group">
               <label for="exampleInputEmail1">Sign In to Play</label>
-              <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter email">
+              <input name="credentials[email]" type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
             <div class="form-group">
-              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+              <input name="credentials[password]" type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">Log In</button>
           </form>
         </section>
 
