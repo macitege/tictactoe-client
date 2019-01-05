@@ -45,18 +45,12 @@ const makeMove = function (event) {
     $('#' + id).text('o')
   }
   whoWon()
-  isOver()
 }
 
-// Function to check if the game is over?
-const isOver = function () {
-  if (!cells.includes('')) {
-    alert('game is over')
-  }
-}
-
-// Function to find winner during the game
+// Function to find winner
+// (works during the game, when somebody wins, stops the game)
 const whoWon = function () {
+  // Callback function for .reduce()
   const isSame = (acc, curr) => acc + curr
   // Cell tracks that should contain x or o to create winner
   const c = cells
@@ -72,10 +66,20 @@ const whoWon = function () {
   }
   // Loop that iterates over winnerTracks object to find a winner
   for (const track in winnerTracks) {
+    // Reduces winner tracks down to a string consist of "x"s and "o"s
     const trackValue = winnerTracks[track].reduce(isSame)
+    // if there is a match
     if (trackValue === 'xxx' || trackValue === 'ooo') {
       console.log(track + 'won')
       $('#message').text('Somebody Won!!')
+      $('.box').off('click', makeMove)
+      break
+      /* If the last move was the winner move, break would end the condition here.
+      If there was no break keyword, 2nd block would run and overwrite winner
+      message in #message area */
+    } else if (!cells.includes('')) {
+      $('#message').text('DRAW!!')
+      $('.box').off('click', makeMove)
     }
   }
 }

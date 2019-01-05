@@ -1,6 +1,6 @@
 'use strict'
 
-const gameLogic = require('./game-logic')
+const gameLogic = require('./game/game-logic')
 
 $(() => {
   gameLogic.setGame()
