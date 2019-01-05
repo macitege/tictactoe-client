@@ -26,7 +26,6 @@ const setGame = function () {
     `)
   $('.box').on('click', makeMove)
   $('#message').text('')
-
 }
 
 // Function that allows user to make move
@@ -56,22 +55,24 @@ const isOver = function () {
   }
 }
 
+// Function to find winner during the game
 const whoWon = function () {
   const isSame = (acc, curr) => acc + curr
-
+  // Cell tracks that should contain x or o to create winner
+  const c = cells
   const winnerTracks = {
-    track0: [cells[0], cells[1], cells[2]].reduce(isSame),
-    track1: [cells[3], cells[4], cells[5]].reduce(isSame),
-    track2: [cells[6], cells[7], cells[8]].reduce(isSame),
-    track3: [cells[0], cells[3], cells[6]].reduce(isSame),
-    track4: [cells[1], cells[4], cells[7]].reduce(isSame),
-    track5: [cells[2], cells[5], cells[8]].reduce(isSame),
-    track6: [cells[0], cells[4], cells[8]].reduce(isSame),
-    track7: [cells[2], cells[4], cells[6]].reduce(isSame)
+    track0: [c[0], c[1], c[2]],
+    track1: [c[3], c[4], c[5]],
+    track2: [c[6], c[7], c[8]],
+    track3: [c[0], c[3], c[6]],
+    track4: [c[1], c[4], c[7]],
+    track5: [c[2], c[5], c[8]],
+    track6: [c[0], c[4], c[8]],
+    track7: [c[2], c[4], c[6]]
   }
-
+  // Loop that iterates over winnerTracks object to find a winner
   for (const track in winnerTracks) {
-    const trackValue = winnerTracks[track]
+    const trackValue = winnerTracks[track].reduce(isSame)
     if (trackValue === 'xxx' || trackValue === 'ooo') {
       console.log(track + 'won')
       $('#message').text('Somebody Won!!')
