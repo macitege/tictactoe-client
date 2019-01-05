@@ -1,5 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 
+@mixin active-area {
+  height: 310px;
+  width: 310px;
+}
+
 $container-border-color: #5e5e5e;
 $container-bg-color: #9e9e9e;
 $box-border-color: #fff;
@@ -22,14 +27,14 @@ body {
 }
 
 .game-board {
+  @include active-area;
   align-items: center;
   background-color: $container-bg-color;
   border: 4px solid $box-border-color;
   display: flex;
   flex-direction: column;
-  height: 310px;
   justify-content: center;
-  width: 310px;
+
 
   .row {
 

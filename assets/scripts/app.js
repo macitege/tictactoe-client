@@ -1,7 +1,7 @@
 'use strict'
 
 const gameLogic = require('./game/game-logic')
-const events = require('./game/events.js')
+const events = require('./auth/events.js')
 
 $(() => {
   gameLogic.setGame()
