@@ -1,9 +1,11 @@
+'use strict'
 
+// Application Logic UI Starts Here
 const gameLogic = require('./game-logic')
 
 const setBoard = function () {
   $('#message').text('')
-  $('.game-board').html(`
+  $('#game-board').html(`
     <div class="row">
       <div id="0" class="box"></div>
       <div id="1" class="box"></div>
@@ -43,6 +45,21 @@ const onDraw = function () {
 const alertPlayer = function () {
   alert('Pick an empty cell')
 }
+// Application Logic UI Ends Here
+
+// Authorization UI Starts Here
+
+const onSignUpSuccess = (response) => {
+  $('#message').text('Sign up successfull')
+  $('#sign-up').trigger('reset')
+}
+
+const onSignUpFailure = () => {
+  $('#message').text('Sign up failed. This email has signed up before.')
+  $('#email-up').css('border-color', 'red')
+}
+
+// Authorization UI Ends Here
 
 module.exports = {
   onWinner,
@@ -50,5 +67,7 @@ module.exports = {
   setBoard,
   alertPlayer,
   putX,
-  putO
+  putO,
+  onSignUpSuccess,
+  onSignUpFailure
 }

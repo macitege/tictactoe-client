@@ -14,9 +14,47 @@
     <body>
       <h1>TICTACTOE</h1>
         <section id="message"></section>
-        <div class="game-board">
+        <div id="game-board" class="game-board">
 
         </div>
         <button id="reset-button">Restart</button>
+
+        <section class="sign-up-wrapper">
+          <form id="sign-up">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Sign Up to Play</label>
+              <input id="email-up" name="credentials[email]" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <input name="credentials[password]" type="password" class="form-control password-up" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <input name="credentials[password_confirmation]" type="password" class="form-control password-up" id="exampleInputPasswordConfirm1" placeholder="Confirm Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </section>
+
+        <section class="sign-in-wrapper">
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Sign In to Play</label>
+              <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+          </form>
+        </section>
+
+        <button class="sign-out">Sign Out</button>
+        <button class="change-password">Change Password</button>
+
+        <section class="game-options">
+        <button class="create a game">Start</button>
+        </section>
+
+
     </body>
 </html>

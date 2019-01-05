@@ -1,6 +1,8 @@
+'use strict'
+
 const ui = require('./ui')
 
-// Array  taht represents cells on the game board
+// Array  that represents cells on the game board
 let cells = ['', '', '', '', '', '', '', '', '']
 // Variable that holds last players info, so that engine can check who was the last player
 let lastPlayer = null
