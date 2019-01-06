@@ -1,7 +1,8 @@
 'use strict'
 
+const gameLogic = require('./game-logic.js')
+
 // Application Logic UI Starts Here
-const gameLogic = require('./game-logic')
 
 const setBoard = function () {
   $('#message').text('')
@@ -47,11 +48,26 @@ const alertPlayer = function () {
 }
 // Application Logic UI Ends Here
 
+// Game UI Starts Here
+
+const onCreateGameSuccess = (response) => {
+  console.log(response)
+  $('#reset-button').css('visibility', 'visible')
+  // gameLogic.setGame()
+  $('#reset-button').trigger('click')
+}
+
+const onCreateGameFailure = () => {
+  alert('Please login to play the game.')
+}
+
 module.exports = {
   onWinner,
   onDraw,
   setBoard,
   alertPlayer,
   putX,
-  putO
+  putO,
+  onCreateGameSuccess,
+  onCreateGameFailure
 }

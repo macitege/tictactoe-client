@@ -5,7 +5,7 @@ const accountEvents = require('./auth/events.js')
 const gameEvents = require('./game/events.js')
 
 $(() => {
-  gameLogic.setGame()
+  // gameLogic.setGame()
   $('#reset-button').on('click', gameLogic.setGame)
   $('#sign-up').on('submit', accountEvents.onSignUp)
   $('#sign-in').on('submit', accountEvents.onSignIn)
