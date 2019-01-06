@@ -9,7 +9,6 @@ const onSignUpSuccess = () => {
 
 const onSignUpFailure = () => {
   $('#message').text('Sign up failed. This email has signed up before.')
-  $('#email-up').css('border-color', 'red')
 }
 
 const onSignInSuccess = (response) => {
