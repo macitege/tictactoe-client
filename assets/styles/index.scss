@@ -20,6 +20,10 @@ body {
   > h1 {
     text-align: center;
   }
+
+  button {
+    cursor: pointer;
+  }
 }
 
 .message {
@@ -41,6 +45,7 @@ body {
     .box {
       border: 2px solid $box-border-color;
       color: $box-border-color;
+      cursor: pointer;
       font-family: fantasy;
       font-size: $square-dimensions * .7;
       height: $square-dimensions;
@@ -53,7 +58,8 @@ body {
 
 .sign-up-wrapper,
 .sign-in-wrapper,
-.game-options {
+.game-options,
+.changepw-wrapper {
   border: 1px solid $container-border-color;
   height: 310px;
   padding: 10px;

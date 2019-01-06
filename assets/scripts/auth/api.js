@@ -1,6 +1,6 @@
 'use strict'
 
-const config = require('../config')
+const config = require('../config.js')
 
 const signUp = (data) => {
   return $.ajax({
@@ -18,7 +18,19 @@ const signIn = (data) => {
   })
 }
 
+const changePW = (data, token) => {
+  return $.ajax({
+    url: config.apiUrl + '/change-password',
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + token
+    },
+    data: data
+  })
+}
+
 module.exports = {
   signUp,
-  signIn
+  signIn,
+  changePW
 }

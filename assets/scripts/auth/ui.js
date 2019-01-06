@@ -1,6 +1,7 @@
 'use strict'
 
-const store = require('../store')
+const store = require('../store.js')
+
 const onSignUpSuccess = () => {
   $('#message').text('Sign up successfull')
   $('#sign-up').trigger('reset')
@@ -14,17 +15,27 @@ const onSignUpFailure = () => {
 const onSignInSuccess = (response) => {
   store.user = response.user
   $('#message').text('Sign in successfull')
-  $('#sign-up').trigger('reset')
+  $('#sign-in').trigger('reset')
 }
 
 const onSignInFailure = () => {
   $('#message').text('Sign in failed. This email or password is wrong. Or there is no such an account.')
-  $('#email-up').css('border-color', 'red')
+}
+
+const onChangePWSuccess = () => {
+  $('#message').text('Change password successfull')
+  $('#changepw').trigger('reset')
+}
+
+const onChangePWFailure = () => {
+  $('#message').text('Change password failed.')
 }
 
 module.exports = {
   onSignUpSuccess,
   onSignUpFailure,
   onSignInSuccess,
-  onSignInFailure
+  onSignInFailure,
+  onChangePWSuccess,
+  onChangePWFailure
 }
