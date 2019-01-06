@@ -3,7 +3,7 @@
 const store = require('../store.js')
 
 const onSignUpSuccess = () => {
-  $('#message').text('Sign up successfull')
+  $('#message').text('Sign up successful')
   $('#sign-up').trigger('reset')
 }
 
@@ -14,7 +14,7 @@ const onSignUpFailure = () => {
 
 const onSignInSuccess = (response) => {
   store.user = response.user
-  $('#message').text('Sign in successfull')
+  $('#message').text('Sign in successful')
   $('#sign-in').trigger('reset')
 }
 
@@ -23,12 +23,20 @@ const onSignInFailure = () => {
 }
 
 const onChangePWSuccess = () => {
-  $('#message').text('Change password successfull')
+  $('#message').text('Change password successful')
   $('#changepw').trigger('reset')
 }
 
 const onChangePWFailure = () => {
   $('#message').text('Change password failed.')
+}
+
+const onSignOutSuccess = (response) => {
+  $('#message').text('Sign out successful')
+}
+
+const onSignOutFailure = (response) => {
+  $('#message').text('Sign out failed.')
 }
 
 module.exports = {
@@ -37,5 +45,7 @@ module.exports = {
   onSignInSuccess,
   onSignInFailure,
   onChangePWSuccess,
-  onChangePWFailure
+  onChangePWFailure,
+  onSignOutSuccess,
+  onSignOutFailure
 }

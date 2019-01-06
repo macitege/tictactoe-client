@@ -30,8 +30,17 @@ const onChangePW = (event) => {
     .catch(ui.onChangePWFailure)
 }
 
+const onSignOut = (event) => {
+  event.preventDefault()
+  const token = store.user.token
+  api.signOut(token)
+    .then(ui.onSignOutSuccess)
+    .catch(ui.onSignOutFailure)
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
-  onChangePW
+  onChangePW,
+  onSignOut
 }
