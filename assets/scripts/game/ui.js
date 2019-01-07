@@ -1,7 +1,5 @@
 'use strict'
 
-const gameLogic = require('./game-logic.js')
-
 // Application Logic UI Starts Here
 
 const setBoard = function () {
@@ -26,21 +24,23 @@ const setBoard = function () {
 }
 
 const putX = function (id) {
-  $('#' + id).text('x')
+  $('#' + id).text('x').val('x')
+  console.log($('#' + id).val() + ' for ' + 'id: ' + id)
 }
 
 const putO = function (id) {
-  $('#' + id).text('o')
+  $('#' + id).text('o').val('o')
+  console.log($('#' + id).val() + ' for ' + 'id: ' + id)
 }
 
 const onWinner = function (winner) {
   $('#message').text('Winner is ' + winner.toUpperCase())
-  $('.box').off('click', gameLogic.makeMove)
+  $('.box').off('click')
 }
 
 const onDraw = function () {
   $('#message').text('DRAW!!')
-  $('.box').off('click', gameLogic.makeMove)
+  $('.box').off('click')
 }
 
 const alertPlayer = function () {
@@ -53,8 +53,6 @@ const alertPlayer = function () {
 const onCreateGameSuccess = (response) => {
   console.log(response)
   $('#reset-button').css('visibility', 'visible')
-  // gameLogic.setGame()
-  $('#reset-button').trigger('click')
 }
 
 const onCreateGameFailure = () => {

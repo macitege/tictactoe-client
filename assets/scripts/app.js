@@ -12,4 +12,5 @@ $(() => {
   $('#changepw').on('submit', accountEvents.onChangePW)
   $('#sign-out').on('click', accountEvents.onSignOut)
   $('#create-game').on('click', gameEvents.onCreateGame)
+  // $('.box').change(gameEvents.onMove)
 })
