@@ -5,12 +5,29 @@ const api = require('./api.js')
 const ui = require('./ui.js')
 const gameLogic = require('./game-logic.js')
 
+const onGetGames = (event) => {
+  event.preventDefault()
+  if (store.user === undefined) {
+    $('#message-data').html('<h2>Have you signed in?</h2>')
+  }
+  const token = store.user.token
+  api.getGames(token)
+    .then(ui.onGetGamesSuccess)
+    .catch(ui.onGetGamesFailure)
+}
+
 const onCreateGame = (event) => {
   event.preventDefault()
   const token = store.user.token
   api.createGame(token)
+    // stores the game, makes reset button appear
     .then(ui.onCreateGameSuccess)
+    // sets the game board when game is created
     .then(gameLogic.setGame)
+    // add event handler vor .box to update api
+    .then(() => {
+      $('.box').on('click', onMove)
+    })
     .catch(ui.onCreateGameFailure)
 }
 
@@ -54,5 +71,6 @@ const onMove = (event) => {
 module.exports = {
   onCreateGame,
   onMove,
-  onShowGame
+  onShowGame,
+  onGetGames
 }

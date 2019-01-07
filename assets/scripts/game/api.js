@@ -2,6 +2,17 @@
 
 const config = require('./../config.js')
 
+const getGames = (token) => {
+  return $.ajax({
+    url: config.apiUrl + '/games/',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + token
+    },
+    data: ''
+  })
+}
+
 const createGame = (token) => {
   return $.ajax({
     url: config.apiUrl + '/games/',
@@ -37,5 +48,6 @@ const updateGame = (token, gameID, data) => {
 module.exports = {
   createGame,
   updateGame,
-  showGame
+  showGame,
+  getGames
 }

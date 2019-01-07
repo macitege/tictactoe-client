@@ -5,6 +5,7 @@ const store = require('./../store.js')
 // Application Logic UI Starts Here
 
 const setBoard = function () {
+
   $('#message').text('')
   $('#game-board').html(`
     <div class="row">
@@ -50,6 +51,15 @@ const alertPlayer = function () {
 
 // Game UI Starts Here
 
+const onGetGamesSuccess = (response) => {
+  console.log(response)
+  $('#message-data').html('You got them in the console.')
+}
+
+const onGetGamesFailure = (response) => {
+  $('#message-data').html('<h2> Have you signed in?</h2>')
+}
+
 const onCreateGameSuccess = (response) => {
   store.game = response.game
   console.log(store.game.id)
@@ -94,5 +104,7 @@ module.exports = {
   onUpdateGameSuccess,
   onUpdateGameFailure,
   onShowGameSuccess,
-  onShowGameFailure
+  onShowGameFailure,
+  onGetGamesSuccess,
+  onGetGamesFailure
 }
