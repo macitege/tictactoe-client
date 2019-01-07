@@ -1,6 +1,7 @@
 'use strict'
 
 const ui = require('./ui')
+const gameEvents = require('./events.js')
 
 // Array  that represents cells on the game board
 let cells = ['', '', '', '', '', '', '', '', '']
@@ -13,6 +14,7 @@ const setGame = function () {
   lastPlayer = null
   ui.setBoard()
   $('.box').on('click', makeMove)
+  $('.box').on('click', gameEvents.onMove)
 }
 
 // Function that allows user to make move

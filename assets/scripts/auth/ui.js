@@ -13,6 +13,7 @@ const onSignUpFailure = () => {
 
 const onSignInSuccess = (response) => {
   store.user = response.user
+  console.log(store.user.token)
   $('#message').text('Sign in successful')
   $('#sign-in').trigger('reset')
 }
