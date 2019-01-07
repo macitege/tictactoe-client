@@ -22,7 +22,7 @@
         <section class="sign-up-wrapper">
           <form id="sign-up">
             <div class="form-group">
-              <label for="exampleInputEmail1">Sign Up to Play</label>
+              <label>Sign Up to Play <span id="sign-up-message" class=""></span></label>
               <input id="email-up" name="credentials[email]" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
             <div class="form-group">
@@ -38,7 +38,7 @@
         <section class="sign-in-wrapper">
           <form id="sign-in">
             <div class="form-group">
-              <label for="exampleInputEmail1">Sign In to Play</label>
+              <label>Sign In to Play <span id="sign-in-message" class=""></span></label>
               <input name="credentials[email]" type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
             <div class="form-group">
@@ -51,7 +51,7 @@
         <section class="changepw-wrapper">
           <form id="changepw">
             <div class="form-group">
-              <label for="exampleInputEmail1">Change Password</label>
+              <label>Change Password <span id="changepw-message" class=""></span></label>
               <input name="passwords[old]" type="password" class="form-control" aria-describedby="emailHelp" placeholder="Old Password">
             </div>
             <div class="form-group">
@@ -62,6 +62,7 @@
         </section>
 
         <button id="sign-out" class="sign-out">Sign Out</button>
+        <span id="sign-out-message" class=""></span>
 
         <section class="game-options">
         <section id="message2"></section>

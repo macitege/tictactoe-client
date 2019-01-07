@@ -1,11 +1,9 @@
 'use strict'
 
-const gameLogic = require('./game/game-logic.js')
 const accountEvents = require('./auth/events.js')
 const gameEvents = require('./game/events.js')
 
 $(() => {
-  // gameLogic.setGame()
   // $('.box').on('click', gameEvents.onMove)
   $('#create-game').on('click', gameEvents.onCreateGame)
   // reset button creates a new game and refreshes the gameboard

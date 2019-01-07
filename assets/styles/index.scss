@@ -10,6 +10,7 @@ $container-bg-color: #9e9e9e;
 $box-border-color: #fff;
 $square-dimensions: 100px;
 $caution-color: #f44;
+$success-color: #7b4;
 
 body {
   align-items: center;
@@ -64,6 +65,20 @@ body {
   height: 310px;
   padding: 10px;
   width: 310px;
+}
+
+.success {
+  color: $success-color;
+  display: block;
+  font-size: 12px;
+  height: 20px;
+}
+
+.fail {
+  color: $caution-color;
+  display: block;
+  font-size: 12px;
+  height: 20px;
 }
 
 .sign-out {

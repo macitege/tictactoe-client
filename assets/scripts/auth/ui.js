@@ -3,40 +3,42 @@
 const store = require('../store.js')
 
 const onSignUpSuccess = () => {
-  $('#message').text('Sign up successful')
+  $('#sign-up-message').text('Sign up successful.').attr('class', 'success')
   $('#sign-up').trigger('reset')
 }
 
 const onSignUpFailure = () => {
-  $('#message').text('Sign up failed. This email has signed up before.')
+  $('#sign-up-message').text('Sign up failed. Mail address exists.').attr('class', 'fail')
+  $('#sign-up').trigger('reset')
 }
 
 const onSignInSuccess = (response) => {
   store.user = response.user
-  console.log(store.user.token)
-  $('#message').text('Sign in successful')
+  $('#sign-in-message').text('Sign in successful.').attr('class', 'success')
   $('#sign-in').trigger('reset')
 }
 
 const onSignInFailure = () => {
-  $('#message').text('Sign in failed. This email or password is wrong. Or there is no such an account.')
+  $('#sign-in-message').text('Email address or password is wrong.').attr('class', 'fail')
+  $('#sign-up').trigger('reset')
 }
 
 const onChangePWSuccess = () => {
-  $('#message').text('Change password successful')
+  $('#changepw-message').text('Your password is changed.').attr('class', 'success')
   $('#changepw').trigger('reset')
 }
 
 const onChangePWFailure = () => {
-  $('#message').text('Change password failed.')
+  $('#changepw-message').text('Password is not correct.').attr('class', 'fail')
+  $('#changepw').trigger('reset')
 }
 
 const onSignOutSuccess = (response) => {
-  $('#message').text('Sign out successful')
+  $('#sign-out-message').text('Successfully signed out.').attr('class', 'success')
 }
 
 const onSignOutFailure = (response) => {
-  $('#message').text('Sign out failed.')
+  $('#sign-out-message').text('Sign out failed. Connection error or you are not signed in.').attr('class', 'fail')
 }
 
 module.exports = {

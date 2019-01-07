@@ -5,7 +5,6 @@ const store = require('./../store.js')
 // Application Logic UI Starts Here
 
 const setBoard = function () {
-
   $('#message').text('')
   $('#game-board').html(`
     <div class="row">
