@@ -51,7 +51,6 @@ const alertPlayer = function () {
 // Game UI Starts Here
 
 const onGetGamesSuccess = (response) => {
-  console.log(response)
   $('#message-data').html('You got them in the console.')
 }
 
@@ -61,7 +60,6 @@ const onGetGamesFailure = (response) => {
 
 const onCreateGameSuccess = (response) => {
   store.game = response.game
-  console.log(store.game.id)
   $('#reset-button').css('visibility', 'visible')
 }
 
@@ -70,7 +68,6 @@ const onCreateGameFailure = () => {
 }
 
 const onShowGameSuccess = (response) => {
-  // console.log(response.game)
   const theGame = response.game
   const gameID = theGame.id
   const cells = theGame.cells.join(', ')
@@ -83,6 +80,16 @@ const onShowGameSuccess = (response) => {
 const onShowGameFailure = () => {
   $('#message-data').html('<h2>Check your game ID. It is wrong.</h2>')
 }
+
+const onJoinGameSuccess = (response) => {
+  console.log(response)
+  $('#message-data').html('<h2>You have successfully joined the game</h2>')
+}
+
+const onJoinGameFailure = (response) => {
+  $('#message-data').html('<h2>Failed.</h2>')
+}
+
 const onUpdateGameSuccess = (cellID, updatedVal) => {
   $('#message').text('Game is updated. Put an ' + updatedVal + ' in ' + cellID)
 }
@@ -105,5 +112,7 @@ module.exports = {
   onShowGameSuccess,
   onShowGameFailure,
   onGetGamesSuccess,
-  onGetGamesFailure
+  onGetGamesFailure,
+  onJoinGameSuccess,
+  onJoinGameFailure
 }

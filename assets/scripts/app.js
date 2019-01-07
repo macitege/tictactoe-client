@@ -14,5 +14,6 @@ $(() => {
   $('#sign-out').on('click', accountEvents.onSignOut)
   $('#show-game').on('submit', gameEvents.onShowGame)
   $('#get-games').on('click', gameEvents.onGetGames)
+  $('#join-game').on('submit', gameEvents.onJoinGame)
 })
 // .css('visibility', 'visible')

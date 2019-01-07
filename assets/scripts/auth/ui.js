@@ -35,6 +35,8 @@ const onChangePWFailure = () => {
 
 const onSignOutSuccess = (response) => {
   $('#sign-out-message').text('Successfully signed out.').attr('class', 'success')
+  $('#game-board').html('')
+  $('#reset-button').hide()
 }
 
 const onSignOutFailure = (response) => {
