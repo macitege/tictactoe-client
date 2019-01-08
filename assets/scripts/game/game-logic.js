@@ -31,12 +31,13 @@ const makeMove = function (event) {
     lastPlayer = 'o'
     ui.putO(id)
   }
-  whoWon()
+  whoWon(id)
 }
 
 // Function to find winner
 // (works during the game, when somebody wins, stops the game)
-const whoWon = function () {
+let isGameOver = false
+const whoWon = function (id) {
   // Callback function for .reduce()
   const isSame = (acc, curr) => acc + curr
   // Cell tracks that should contain x or o to create winner
@@ -59,14 +60,17 @@ const whoWon = function () {
     // if there is a match
     if (trackValue === 'xxx' || trackValue === 'ooo') {
       ui.onWinner(winner)
+      isGameOver = true
       break
       /* If the last move was the winner move, break would end the condition here.
       If there was no break keyword, 2nd block would run and overwrite winner
       message in #message area */
     } else if (!cells.includes('')) {
       ui.onDraw()
+      isGameOver = true
     }
   }
+  $('#send-to-api').trigger('click', [id, isGameOver])
 }
 
 module.exports = {

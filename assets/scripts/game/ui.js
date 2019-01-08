@@ -52,6 +52,7 @@ const alertPlayer = function () {
 
 const onGetGamesSuccess = (response) => {
   $('#message-data').html('You got them in the console.')
+  console.log(response)
 }
 
 const onGetGamesFailure = (response) => {
@@ -61,19 +62,21 @@ const onGetGamesFailure = (response) => {
 const onCreateGameSuccess = (response) => {
   store.game = response.game
   $('#reset-button').css('visibility', 'visible')
+  console.log(response.game)
 }
 
 const onCreateGameFailure = () => {
-  alert('Please login to play the game.')
+  $('#message-data').html('<h2> A server error occured. Check your internet connection and try again.</h2>')
 }
 
 const onShowGameSuccess = (response) => {
-  const theGame = response.game
-  const gameID = theGame.id
-  const cells = theGame.cells.join(', ')
+  const gameID = response.game.id
+  const cells = response.game.cells.join(', ')
+  const over = response.game.over
   $('#message-data').html(`
     <h5>Game ID: ${gameID} </h5>
     <h5>Cells: ${cells} </h5>
+    <h5>Cells: ${over} </h5>
     `)
 }
 

@@ -18,16 +18,15 @@ const onGetGames = (event) => {
 
 const onCreateGame = (event) => {
   event.preventDefault()
+  if (store.user === undefined) {
+    $('#message-data').html('<h2>Please sign in to play.</h2>')
+  }
   const token = store.user.token
   api.createGame(token)
     // stores the game, makes reset button appear
     .then(ui.onCreateGameSuccess)
     // sets the game board when game is created
     .then(gameLogic.setGame)
-    // add event handler vor .box to update api
-    .then(() => {
-      $('.box').on('click', onMove)
-    })
     .catch(ui.onCreateGameFailure)
 }
 
@@ -55,14 +54,13 @@ const onJoinGame = (event) => {
     .catch(ui.onJoinGameFailure)
 }
 
-const onMove = (event) => {
+const onMove = (event, id, isGameOver) => {
   event.preventDefault()
-  const cellID = Number(event.target.id)
+  const cellID = id
   const gameID = store.game.id
   const token = store.user.token
   const val = $('#' + cellID).val().toString()
-  const overAttr = $('#' + cellID).attr('over')
-  const isOver = (overAttr === 'true')
+  const isOver = isGameOver
   const data = {
     'game': {
       'cell': {

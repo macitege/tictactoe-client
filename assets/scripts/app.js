@@ -4,7 +4,7 @@ const accountEvents = require('./auth/events.js')
 const gameEvents = require('./game/events.js')
 
 $(() => {
-  // $('.box').on('click', gameEvents.onMove)
+  // START GAME
   $('#create-game').on('click', gameEvents.onCreateGame)
   // reset button creates a new game and refreshes the gameboard
   $('#reset-button').on('click', gameEvents.onCreateGame)
@@ -15,5 +15,6 @@ $(() => {
   $('#show-game').on('submit', gameEvents.onShowGame)
   $('#get-games').on('click', gameEvents.onGetGames)
   $('#join-game').on('submit', gameEvents.onJoinGame)
+  $('#send-to-api').on('click', gameEvents.onMove)
 })
 // .css('visibility', 'visible')
