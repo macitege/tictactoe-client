@@ -20,7 +20,7 @@ const onJoinGame = (event) => {
 }
 
 const stream = () => {
-  const id = store.joinedGame.id
+  const id = store.game.id
   const token = store.user.token
   const watchURL = config.apiUrl + '/games/' + id + '/watch'
   console.log('game id is: ' + id,

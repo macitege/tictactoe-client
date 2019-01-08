@@ -1,10 +1,12 @@
 'use strict'
 
 const store = require('./../store.js')
+const ui = require('./ui.js')
+const gameLogic = require('./game-logic.js')
 
 const onJoinGameSuccess = (response) => {
-  store.joinedGame = response.game
-  const game = store.joinedGame
+  store.game = response.game
+  const game = store.game
   $('#message-data').html('<p>You have successfully joined the game<p>')
   const playerX = game.player_x.email
   let playerO
@@ -19,6 +21,21 @@ const onJoinGameSuccess = (response) => {
     <h5>Player-2: ${playerO} </h5>
     <h5>Game Status: ${game.over === true ? 'Finished' : 'Incomplete'} </h5>
     `)
+
+  const cells = game.cells
+  ui.setBoard()
+  $('.box').on('click', gameLogic.makeMove)
+  let i = 0
+  cells.forEach(
+    (cell) => {
+      if (cell === 'x' || cell === 'o') {
+        $('#' + i).text(cell)
+        i = i + 1
+      } else {
+        i++
+      }
+    }
+  )
 }
 
 const onJoinGameFailure = (response) => {

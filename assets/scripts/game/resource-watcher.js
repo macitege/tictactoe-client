@@ -1,17 +1,17 @@
 'use strict'
 
 const resourceWatcher = function (url, conf) {
-  let token = function (conf) {
+  const token = function (conf) {
     return conf && (conf = conf.Authorization) &&
       (conf = typeof conf === 'string' &&
         conf.split('=')) &&
       Array.isArray(conf) && conf[1]
   }
 
-  url += '?token=' + token(conf);
+  url += '?token=' + token(conf)
   url += conf.timeout ? '&timeout=' + conf.timeout : ''
-  let es = new EventSource(url) // jshint ignore: line
-  let close = function () {
+  const es = new EventSource(url) // jshint ignore: line
+  const close = function () {
     es.close()
   }
 
