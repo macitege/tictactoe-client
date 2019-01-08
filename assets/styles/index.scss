@@ -11,6 +11,10 @@ $box-border-color: #fff;
 $square-dimensions: 100px;
 $caution-color: #f44;
 $success-color: #7b4;
+$button-color: #fff;
+$button-border-color: #9e9e9e;
+$button-font-color: #5e5e5e;
+$button-signup-color: #5e5efe;
 
 body {
   align-items: center;
@@ -22,13 +26,95 @@ body {
     text-align: center;
   }
 
-  button {
+  .btn {
+    background-color: $button-color;
+    border-color: $button-border-color;
+    color: $button-font-color;
     cursor: pointer;
+    font-size: .8rem;
+    height: 30px;
+    // margin-left: 5px;
+
+    &:hover {
+      background-color: $button-border-color;
+      border-color: $button-border-color;
+    }
+  }
+
+
+  header {
+    border-bottom: 2px solid $container-border-color;
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 10px;
+    width: 100vw;
+
+    .logo {
+      height: 50px;
+      width: auto;
+    }
+
+    .sign-in-wrapper,
+    .auth-wrapper {
+      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+      height: 70px;
+      justify-content: flex-start;
+      width: 700px;
+
+      .form-control {
+        font-size: 80%;
+        height: 30px;
+        width: 150px;
+      }
+      .sign-in-message {
+        display: inline-block;
+        position: relative;
+        right: 100px;
+
+      }
+      .sign-up-button {
+        margin-top: 5px;
+        background-color: $button-signup-color;
+        color: $button-color;
+        width: 75px;
+      }
+
+      .sign-in-button {
+        width: 75px;
+      }
+    }
   }
 }
 
-.message {
-  height: 50px;
+.account-wrapper {
+  position: relative;
+  right: 60px;
+  visibility: hidden;
+}
+
+.sign-up-wrapper {
+  margin: 10px;
+}
+
+.message-wrapper {
+  height: 70px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+
+  .message {
+    height: 50px;
+    margin-bottom: 20px;
+  }
+}
+
+.sign-up-message {
+  height: 20px;
+  margin: 5px;
 }
 
 .game-board {
@@ -57,8 +143,6 @@ body {
   }
 }
 
-.sign-up-wrapper,
-.sign-in-wrapper,
 .game-options,
 .changepw-wrapper {
   border: 1px solid $container-border-color;
@@ -70,14 +154,14 @@ body {
 .success {
   color: $success-color;
   display: block;
-  font-size: 12px;
+  font-size: 18px;
   height: 20px;
 }
 
 .fail {
   color: $caution-color;
   display: block;
-  font-size: 12px;
+  font-size: 18px;
   height: 20px;
 }
 
@@ -97,4 +181,9 @@ body {
 
 .send-to-api {
   visibility: hidden;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-around;
 }

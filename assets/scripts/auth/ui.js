@@ -3,23 +3,31 @@
 let store = require('../store.js')
 
 const onSignUpSuccess = () => {
-  $('#sign-up-message').text('Sign up successful.').attr('class', 'success')
+  $('#message').text('Sign up successful.').attr('class', 'success')
+  setTimeout(() => { $('#message').fadeOut(500) }, 2000)
   $('#sign-up').trigger('reset')
+  $('.close').trigger('click')
 }
 
 const onSignUpFailure = () => {
-  $('#sign-up-message').text('Sign up failed. Mail address exists.').attr('class', 'fail')
+  $('#sign-up-message').text('Sign up failed.').attr('class', 'fail')
   $('#sign-up').trigger('reset')
 }
 
 const onSignInSuccess = (response) => {
   store.user = response.user
-  $('#sign-in-message').text('Sign in successful.').attr('class', 'success')
+  $('#message').text('Sign in successful.').attr('class', 'success')
+  setTimeout(() => { $('#message').fadeOut(500) }, 2000)
   $('#sign-in').trigger('reset')
+  $('.sign-in-wrapper').fadeOut(200)
+  $('.account-wrapper').css('visibility', 'visible').fadeIn(400)
 }
 
 const onSignInFailure = () => {
-  $('#sign-in-message').text('Email address or password is wrong.').attr('class', 'fail')
+  $('#message').text('Email address or password is wrong.').attr('class', 'fail')
+  $('#sign-in-email').css('border-color', '#f44')
+  $('#sign-in-password').css('border-color', '#f44')
+  setTimeout(() => { $('#message').fadeOut(500) }, 2000)
   $('#sign-up').trigger('reset')
 }
 

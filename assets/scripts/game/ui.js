@@ -5,7 +5,7 @@ const store = require('./../store.js')
 // Application Logic UI Starts Here
 
 const setBoard = function () {
-  $('#message').text('')
+  $('#message').text('X\'s Turn')
   $('#game-board').html(`
     <div class="row">
       <div id="0" class="box" over="false"></div>
@@ -27,10 +27,12 @@ const setBoard = function () {
 
 const putX = function (id) {
   $('#' + id).text('x').val('x')
+  $('#message').text('O\'s Turn')
 }
 
 const putO = function (id) {
   $('#' + id).text('o').val('o')
+  $('#message').text('X\'s Turn')
 }
 
 const onWinner = function (winner) {
@@ -92,9 +94,7 @@ const onShowGameFailure = () => {
   $('#message-data').html('<h2>Check your game ID. It is wrong.</h2>')
 }
 
-const onUpdateGameSuccess = (cellID, updatedVal) => {
-  $('#message').text('Game is updated. Put an ' + updatedVal + ' in ' + cellID)
-}
+const onUpdateGameSuccess = (cellID, updatedVal) => {}
 
 const onUpdateGameFailure = () => {
   $('#message').text('Connection failure with server')

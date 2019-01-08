@@ -12,41 +12,61 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1 id="page-top">TICTACTOE</h1>
-        <section id="message"></section>
-        <div id="game-board" class="game-board">
+      <header id="page-top">
+
+        <div class="logo-wrapper">
+          <img class="logo" src="./public/images/toe.png" alt="A toe image"/>
+          <span> TICTAC"TOE" </span>
+        </div>
+
+        <div class="auth-wrapper">
+
+          <div class="sign-in-wrapper">
+            <form id="sign-in" class="form-row">
+              <div class="col">
+                <input name="credentials[email]" type="email" class="form-control" id="sign-in-email" aria-describedby="emailHelp" placeholder="Enter email">
+              </div>
+              <div class="col">
+                <input name="credentials[password]" type="password" class="form-control" id="sign-in-password" placeholder="Password">
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-primary sign-in-button">Sign In</button>
+              </div>
+            </form>
+            <!-- Button trigger modal -->
+            <button type="button" class="sign-up-button btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Sign Up
+            </button>
+            </div>
+        </div>
+        <div id="sign-in-message" class="sign-in-message"></div>
+
+        <div class="account-wrapper">
+          <div class="btn-group">
+            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Account
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a href="#" class="dropdown-item btn"> Change Password </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item btn"> Game History </a>
+            </div>
+          </div>
+        </div>
 
         </div>
+
+      </header>
+
+        <div class="message-wrapper">
+        <div id="message" class="message"></div>
+      </div>
+        <div id="game-board" class="game-board">
+          <p> Please sign in to play. </p>
+        </div>
+
         <button id="reset-button" class="reset-button">Restart</button>
 
-        <section class="sign-up-wrapper">
-          <form id="sign-up">
-            <div class="form-group">
-              <label>Sign Up to Play <span id="sign-up-message" class=""></span></label>
-              <input id="email-up" name="credentials[email]" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-              <input name="credentials[password]" type="password" class="form-control password-up" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <div class="form-group">
-              <input name="credentials[password_confirmation]" type="password" class="form-control password-up" id="exampleInputPasswordConfirm1" placeholder="Confirm Password">
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-          </form>
-        </section>
-
-        <section class="sign-in-wrapper">
-          <form id="sign-in">
-            <div class="form-group">
-              <label>Sign In to Play <span id="sign-in-message" class=""></span></label>
-              <input name="credentials[email]" type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-              <input name="credentials[password]" type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-primary">Log In</button>
-          </form>
-        </section>
 
         <section class="changepw-wrapper">
           <form id="changepw">
@@ -82,6 +102,40 @@
         </section>
         <button id="send-to-api" class="send-to-api"></button>
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <section class="sign-up-wrapper">
+                  <form id="sign-up" class="form-group">
+                    <div class="col">
+                      <input id="email-up" name="credentials[email]" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="col">
+                      <input name="credentials[password]" type="password" class="form-control password-up" placeholder="Password">
+                    </div>
+                    <div class="col">
+                      <input name="credentials[password_confirmation]" type="password" class="form-control password-up" placeholder="Confirm Password">
+                    </div>
+                    <div class="modal-footer">
+                      <div id="sign-up-message" class="sign-up-message"></div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                      </div>
+                  </form>
+                </section>
+
+              </div>
+            </div>
+          </div>
+        </div>
 
     </body>
 </html>
