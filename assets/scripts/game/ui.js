@@ -81,7 +81,6 @@ const onShowGameSuccess = (response) => {
   }
   $('#message-data').html(`
     <h5>Game ID: ${game.id} </h5>
-    <h5>Cells: ${game.cells.join('-')} </h5>
     <h5>Player-1: ${playerX} </h5>
     <h5>Player-2: ${playerO} </h5>
     <h5>Game Status: ${game.over === true ? 'Finished' : 'Incomplete'} </h5>

@@ -17,6 +17,7 @@ $(() => {
   $('#redisplay-game').on('click', gameEvents.onRedisplayGame).hide()
   $('#get-games').on('click', gameEvents.onGetGames)
   $('#join-game').on('submit', multiPlayer.onJoinGame)
+  // $('#join-game').on('click', multiPlayer.stream)
   $('#send-to-api').on('click', gameEvents.onMove)
 })
 // .css('visibility', 'visible')
