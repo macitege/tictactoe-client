@@ -73,24 +73,19 @@ const onShowGameSuccess = (response) => {
   const gameID = response.game.id
   const cells = response.game.cells.join(', ')
   const over = response.game.over
+  const playerX = response.game.player_x.email
+  const playerO = response.game.player_o.email
   $('#message-data').html(`
     <h5>Game ID: ${gameID} </h5>
     <h5>Cells: ${cells} </h5>
-    <h5>Cells: ${over} </h5>
+    <h5>Player-1: ${playerX} </h5>
+    <h5>Player-2: ${playerO} </h5>
+    <h5>Game Status: ${over === true ? 'Finished' : 'Incomplete'} </h5>
     `)
 }
 
 const onShowGameFailure = () => {
   $('#message-data').html('<h2>Check your game ID. It is wrong.</h2>')
-}
-
-const onJoinGameSuccess = (response) => {
-  console.log(response)
-  $('#message-data').html('<h2>You have successfully joined the game</h2>')
-}
-
-const onJoinGameFailure = (response) => {
-  $('#message-data').html('<h2>Failed.</h2>')
 }
 
 const onUpdateGameSuccess = (cellID, updatedVal) => {
@@ -115,7 +110,5 @@ module.exports = {
   onShowGameSuccess,
   onShowGameFailure,
   onGetGamesSuccess,
-  onGetGamesFailure,
-  onJoinGameSuccess,
-  onJoinGameFailure
+  onGetGamesFailure
 }

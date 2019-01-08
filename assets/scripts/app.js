@@ -2,6 +2,7 @@
 
 const accountEvents = require('./auth/events.js')
 const gameEvents = require('./game/events.js')
+const multiPlayer = require('./game/multiplayer-events.js')
 
 $(() => {
   // START GAME
@@ -14,7 +15,7 @@ $(() => {
   $('#sign-out').on('click', accountEvents.onSignOut)
   $('#show-game').on('submit', gameEvents.onShowGame)
   $('#get-games').on('click', gameEvents.onGetGames)
-  $('#join-game').on('submit', gameEvents.onJoinGame)
+  $('#join-game').on('submit', multiPlayer.onJoinGame)
   $('#send-to-api').on('click', gameEvents.onMove)
 })
 // .css('visibility', 'visible')
