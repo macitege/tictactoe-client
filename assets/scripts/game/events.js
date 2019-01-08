@@ -42,6 +42,27 @@ const onShowGame = (event) => {
     .catch(ui.onShowGameFailure)
 }
 
+const onRedisplayGame = () => {
+  if (store.showGame) {
+    const cells = store.showGame.cells
+    console.log(cells)
+    ui.setBoard()
+    let i = 0
+    cells.forEach(
+      (cell) => {
+        if (cell === 'x' || cell === 'o') {
+          $('#' + i).text(cell)
+          i = i + 1
+        } else {
+          i++
+        }
+      }
+    )
+  } else {
+    $('#message-data').text('ERROR')
+  }
+}
+
 const onMove = (event, id, isGameOver) => {
   event.preventDefault()
   const cellID = id
@@ -70,5 +91,6 @@ module.exports = {
   onCreateGame,
   onMove,
   onShowGame,
-  onGetGames
+  onGetGames,
+  onRedisplayGame
 }

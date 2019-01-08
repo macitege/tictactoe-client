@@ -14,6 +14,7 @@ $(() => {
   $('#changepw').on('submit', accountEvents.onChangePW)
   $('#sign-out').on('click', accountEvents.onSignOut)
   $('#show-game').on('submit', gameEvents.onShowGame)
+  $('#redisplay-game').on('click', gameEvents.onRedisplayGame).hide()
   $('#get-games').on('click', gameEvents.onGetGames)
   $('#join-game').on('submit', multiPlayer.onJoinGame)
   $('#send-to-api').on('click', gameEvents.onMove)

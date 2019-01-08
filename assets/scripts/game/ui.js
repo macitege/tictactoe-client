@@ -70,18 +70,23 @@ const onCreateGameFailure = () => {
 }
 
 const onShowGameSuccess = (response) => {
-  const gameID = response.game.id
-  const cells = response.game.cells.join(', ')
-  const over = response.game.over
-  const playerX = response.game.player_x.email
-  const playerO = response.game.player_o.email
+  store.showGame = response.game
+  const game = store.showGame
+  const playerX = game.player_x.email
+  let playerO
+  if (game.player_o) {
+    playerO = game.player_o.email
+  } else {
+    playerO = 'None'
+  }
   $('#message-data').html(`
-    <h5>Game ID: ${gameID} </h5>
-    <h5>Cells: ${cells} </h5>
+    <h5>Game ID: ${game.id} </h5>
+    <h5>Cells: ${game.cells.join('-')} </h5>
     <h5>Player-1: ${playerX} </h5>
     <h5>Player-2: ${playerO} </h5>
-    <h5>Game Status: ${over === true ? 'Finished' : 'Incomplete'} </h5>
+    <h5>Game Status: ${game.over === true ? 'Finished' : 'Incomplete'} </h5>
     `)
+  $('#redisplay-game').show()
 }
 
 const onShowGameFailure = () => {

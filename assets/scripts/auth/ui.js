@@ -1,6 +1,6 @@
 'use strict'
 
-const store = require('../store.js')
+let store = require('../store.js')
 
 const onSignUpSuccess = () => {
   $('#sign-up-message').text('Sign up successful.').attr('class', 'success')
@@ -37,6 +37,7 @@ const onSignOutSuccess = (response) => {
   $('#sign-out-message').text('Successfully signed out.').attr('class', 'success')
   $('#game-board').html('')
   $('#reset-button').hide()
+  store = {}
 }
 
 const onSignOutFailure = (response) => {

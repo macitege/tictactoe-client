@@ -12,7 +12,7 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>TICTACTOE</h1>
+      <h1 id="page-top">TICTACTOE</h1>
         <section id="message"></section>
         <div id="game-board" class="game-board">
 
@@ -66,17 +66,19 @@
 
         <section class="game-options">
         <section id="message2"></section>
-        <button id="create-game">Start</button>
+        <button id="create-game" href="#game-board">Start</button>
         <button id="get-games">Fetch All Games Data</button>
         <form id="show-game">
           <input id="game-id" placeholder="Game ID">
-          <button id="show-game-button" type="submit">Show</button>
+          <button type="submit">Show Info</button>
         </form>
         <form id="join-game">
           <input id="join-id" placeholder="Write the Game ID">
           <button id="join-game-button" type="submit">Join</button>
         </form>
-        <div id="message-data" class="message-data"></div>
+        <div id="message-data" class="message-data">
+        </div>
+        <button id="redisplay-game" class="redisplay-button"><a href="#page-top">Redisplay This Game</a></button>
         </section>
         <button id="send-to-api" class="send-to-api"></button>
 
