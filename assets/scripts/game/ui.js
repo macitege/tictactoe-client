@@ -79,7 +79,6 @@ const onGetGamesSuccess = (response) => {
   })
 
   $('#history-table a').on('click', (event) => {
-    console.log('works')
     $('#game-id').val(event.target.text)
     $('#show-game').trigger('submit')
   })

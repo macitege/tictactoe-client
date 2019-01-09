@@ -57,6 +57,7 @@ const onRedisplayGame = (id) => {
   $('#message-game-info').html('<h3>Game ID "' + store.showGame.id + '" | Redisplay</h3>')
   $('#message-game, #message').text('')
   $('#create-game').text('Play a New Game')
+  $('#reset-button').text('Play a New Game')
 }
 
 const onMove = (event, id, isGameOver) => {

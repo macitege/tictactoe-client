@@ -10,6 +10,7 @@ $('#reset-button').hide()
 $('#redisplay-game').on('click', gameEvents.onRedisplayGame).hide()
 $('#get-games').on('click', gameEvents.onGetGames).hide()
 
+
 $(() => {
   // START GAME
   $('#create-game').on('click', gameEvents.onCreateGame)
@@ -23,15 +24,20 @@ $(() => {
   $('#join-game').on('submit', multiPlayer.onJoinGame)
   // $('#join-game').on('click', multiPlayer.stream)
   $('#send-to-api').on('click', gameEvents.onMove)
-  $('#past-games-button').on('click', () => {
-    $('#get-games').trigger('click')
-  })
-  $('#changePwModal, #gameHistoryModal, #signUpModal')
-    .on('hidden.bs.modal', () => {
-      $(this).find('form').trigger('reset')
-    })
+
   $('#gameHistoryModal').on('hidden.bs.modal', () => {
     $('#message-data').html('')
     $('#redisplay-game').hide()
+    $('#show-game').trigger('reset')
+    $('#join-game').trigger('reset')
   })
+
+  $('#past-games-button').on('click', () => {
+    $('#get-games').trigger('click')
+  })
+
+  $('#changePwModal, #gameHistoryModal, #signUpModal')
+    .on('hidden.bs.modal', () => {
+      $('#changepw, #sign-up').trigger('reset')
+    })
 })
