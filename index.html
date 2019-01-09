@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Play TicTacToe</title>
+      <title>TicTac"Toe"</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-
-      <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-
-      <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
+
       <header id="page-top">
 
-        <div class="logo-wrapper">
-          <img class="logo" src="./public/images/toe.png" alt="A toe image"/>
-          <span> TICTAC"TOE" </span>
+        <div class="logo-wrapper col-4">
+
+          <h1 class="logo-text"> TICTAC<span class="logo-span"><img class="logo" src="./public/images/toe.png" alt="A toe image"/></span> </h1>
         </div>
 
-        <div class="auth-wrapper">
+        <div class="auth-wrapper col-8">
 
           <div class="sign-in-wrapper">
             <form id="sign-in" class="form-row">
@@ -34,76 +31,49 @@
               </div>
             </form>
             <!-- Button trigger modal -->
-            <button type="button" class="sign-up-button btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-              Sign Up
-            </button>
+            <button type="button" class="sign-up-button btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
             </div>
+
+            <div id="account-wrapper" class="account-wrapper">
+              <p id="user-info" class="user-info"></p>
+              <div class="btn-group">
+                <button class="btn btn-secondary btn-sm dropdown-toggle account-button" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Account
+                </button>
+                <div class="dropdown-menu dropdown-menu-right pt-1">
+                  <button type="button" class="change-password-button dropdown-item btn m-1" data-toggle="modal" data-target="#changePwModal">Change Password</button>
+
+                  <button id="past-games-button" type="button" class="change-password-button dropdown-item btn m-1" data-toggle="modal" data-target="#gameHistoryModal">Game History</button>
+
+                  <button id="sign-out" type="submit" class="dropdown-item btn btn-primary sign-out-button m-1">Sign Out</button>
+
+                </div>
+              </div>
+            </div>
+
         </div>
         <div id="sign-in-message" class="sign-in-message"></div>
 
-        <div class="account-wrapper">
-          <div class="btn-group">
-            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Account
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-              <a href="#" class="dropdown-item btn"> Change Password </a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item btn"> Game History </a>
-            </div>
-          </div>
-        </div>
-
-        </div>
 
       </header>
 
         <div class="message-wrapper">
-        <div id="message" class="message"></div>
-      </div>
+          <div id="message" class="message"></div>
+          <div id="message-game-info" class="message-game-info"></div>
+          <div id="message-game" class="message"></div>
+        </div>
+
         <div id="game-board" class="game-board">
           <p> Please sign in to play. </p>
         </div>
 
-        <button id="reset-button" class="reset-button">Restart</button>
+        <button id="create-game" class="btn game-btn" >Start</button>
+
+        <button id="reset-button" class="btn game-btn">Restart</button>
 
 
-        <section class="changepw-wrapper">
-          <form id="changepw">
-            <div class="form-group">
-              <label>Change Password <span id="changepw-message" class=""></span></label>
-              <input name="passwords[old]" type="password" class="form-control" aria-describedby="emailHelp" placeholder="Old Password">
-            </div>
-            <div class="form-group">
-              <input name="passwords[new]" type="password" class="form-control" placeholder="New Password">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        </section>
-
-        <button id="sign-out" class="sign-out">Sign Out</button>
-        <span id="sign-out-message" class=""></span>
-
-        <section class="game-options">
-        <section id="message2"></section>
-        <button id="create-game" href="#game-board">Start</button>
-        <button id="get-games">Fetch All Games Data</button>
-        <form id="show-game">
-          <input id="game-id" placeholder="Game ID">
-          <button type="submit">Show Info</button>
-        </form>
-        <form id="join-game">
-          <input id="join-id" placeholder="Write the Game ID">
-          <button id="join-game-button" type="submit">Join</button>
-        </form>
-        <div id="message-data" class="message-data">
-        </div>
-        <button id="redisplay-game" class="redisplay-button"><a href="#page-top">Redisplay This Game</a></button>
-        </section>
-        <button id="send-to-api" class="send-to-api"></button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Sign Up Modal -->
+        <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -131,6 +101,83 @@
                       </div>
                   </form>
                 </section>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Change Password Modal -->
+        <div class="modal fade" id="changePwModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                  <form id="changepw">
+                    <div class="form-group">
+                      <label>Change Password <span id="changepw-message" class=""></span></label>
+                      <input name="passwords[old]" type="password" class="form-control" aria-describedby="emailHelp" placeholder="Old Password">
+                    </div>
+                    <div class="form-group">
+                      <input name="passwords[new]" type="password" class="form-control" placeholder="New Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Game History Modal -->
+        <div class="modal fade" id="gameHistoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title" id="pastGamesHead"></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body modal-lg">
+
+                <button id="get-games"></button>
+                <div id="game-statistics" class="game-statistics">Game Statistics</div>
+        <hr>
+                <form id="show-game">
+                  <input id="game-id" placeholder="Go past game by ID">
+                  <button type="submit" class="btn btn-primary">Bring Up</button>
+                </form>
+        <hr>
+                <form id="join-game">
+                  <input id="join-id" placeholder="Join game by ID">
+                  <button id="join-game-button" class="btn btn-primary" type="submit">Join</button>
+                </form>
+       <hr>
+                <div id="message-data" class="message-data"></div>
+                <button id="redisplay-game" class="redisplay-button btn btn-primary"><a href="#page-top">Redisplay This Game</a></button>
+       <hr>
+                  <table class="table table-md">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Player-X</th>
+                        <th scope="col">Player-O</th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody id="history-table">
+
+                    </tbody>
+                  </table>
+
+                <button id="send-to-api" class="send-to-api"></button>
 
               </div>
             </div>

@@ -6,15 +6,18 @@
 }
 
 $container-border-color: #5e5e5e;
-$container-bg-color: #9e9e9e;
+$container-bg-color: #dedede;
+$body-bg-color: #fff;
 $box-border-color: #fff;
 $square-dimensions: 100px;
 $caution-color: #f44;
+$hover-caution-color: #f77;
 $success-color: #7b4;
 $button-color: #fff;
 $button-border-color: #9e9e9e;
 $button-font-color: #5e5e5e;
 $button-signup-color: #5e5efe;
+$shadow-color: #9e9e9e;
 
 body {
   align-items: center;
@@ -33,7 +36,6 @@ body {
     cursor: pointer;
     font-size: .8rem;
     height: 30px;
-    // margin-left: 5px;
 
     &:hover {
       background-color: $button-border-color;
@@ -41,59 +43,80 @@ body {
     }
   }
 
+  table {
+    font-size: 16px;
+  }
 
   header {
-    border-bottom: 2px solid $container-border-color;
+    background-color: #dedede;
+    box-shadow: 1px 1px $shadow-color;
     display: flex;
-    height: 100px;
-    justify-content: space-between;
+    height: 90px;
     margin-bottom: 30px;
-    padding: 10px;
+    padding: 10px 10px 0 10px;
     width: 100vw;
+    justify-content: space-between;
+
+    .logo-span {
+
+    }
 
     .logo {
       height: 50px;
       width: auto;
+      border-radius: 5px;
+      margin-top: -10px;
+      margin-left: 5px;
     }
 
+    .account-wrapper,
     .sign-in-wrapper,
     .auth-wrapper {
       align-items: flex-end;
       display: flex;
       flex-direction: column;
       height: 70px;
-      justify-content: flex-start;
-      width: 700px;
+      justify-content: space-between;
+
+      .user-info {
+        color: $button-font-color;
+        font-size: 16px;
+        padding: 5px;
+        margin-bottom: 0;
+      }
 
       .form-control {
         font-size: 80%;
         height: 30px;
         width: 150px;
       }
-      .sign-in-message {
-        display: inline-block;
-        position: relative;
-        right: 100px;
 
-      }
       .sign-up-button {
-        margin-top: 5px;
         background-color: $button-signup-color;
         color: $button-color;
         width: 75px;
+        position: relative;
       }
 
       .sign-in-button {
         width: 75px;
       }
+
+      .sign-out-button {
+        border-color: $caution-color;
+        color: $caution-color;
+        margin-top: 5px;
+
+        &:hover {
+          background-color: $hover-caution-color;
+          color: $button-color;
+        }
+      }
+    }
+    .account-wrapper {
+      visibility: hidden;
     }
   }
-}
-
-.account-wrapper {
-  position: relative;
-  right: 60px;
-  visibility: hidden;
 }
 
 .sign-up-wrapper {
@@ -104,27 +127,36 @@ body {
   height: 70px;
   width: 100vw;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 
   .message {
-    height: 50px;
-    margin-bottom: 20px;
+    display: block;
+    height: 30px;
+  }
+
+  .message-game-info {
+    display: block;
+    height: 30px;
+  }
+
+  .message-game {
+    display: block;
+    height: 30px;
   }
 }
 
-.sign-up-message {
-  height: 20px;
-  margin: 5px;
-}
+
 
 .game-board {
   @include active-area;
   align-items: center;
   background-color: $container-bg-color;
-  border: 4px solid $box-border-color;
+  box-shadow: 2px 2px $shadow-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
 
 
   .row {
@@ -141,6 +173,10 @@ body {
       width: $square-dimensions;
     }
   }
+}
+
+.game-btn {
+  margin-top: 5px;
 }
 
 .game-options,
@@ -165,17 +201,7 @@ body {
   height: 20px;
 }
 
-.sign-out {
-  background-color: $caution-color;
-  color: $box-border-color;
-}
-
-.reset-button {
-  visibility: hidden;
-}
-
 .message-data {
-  font-size: 8px;
   overflow: scroll;
 }
 
@@ -186,4 +212,8 @@ body {
 .modal-footer {
   display: flex;
   justify-content: space-around;
+}
+
+.redisplay-button {
+  display: inline-block;
 }

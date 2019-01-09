@@ -7,7 +7,6 @@ const gameLogic = require('./game-logic.js')
 const onJoinGameSuccess = (response) => {
   store.game = response.game
   const game = store.game
-  $('#message-data').html('<p>You have successfully joined the game<p>')
   const playerX = game.player_x.email
   let playerO
   if (game.player_o) {
@@ -15,6 +14,10 @@ const onJoinGameSuccess = (response) => {
   } else {
     playerO = 'None'
   }
+  $('#message-data').html(`
+    <h3>You have successfully joined ${playerX}'s game<h3>
+    <h3>Game Info:</h3>
+    `)
   $('#message-data').append(`
     <h5>Game ID: ${game.id} </h5>
     <h5>Player-1: ${playerX} </h5>

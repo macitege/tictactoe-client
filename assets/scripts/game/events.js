@@ -7,9 +7,6 @@ const gameLogic = require('./game-logic.js')
 
 const onGetGames = (event) => {
   event.preventDefault()
-  if (store.user === undefined) {
-    $('#message-data').html('<h2>Have you signed in?</h2>')
-  }
   const token = store.user.token
   api.getGames(token)
     .then(ui.onGetGamesSuccess)
@@ -18,9 +15,7 @@ const onGetGames = (event) => {
 
 const onCreateGame = (event) => {
   event.preventDefault()
-  if (store.user === undefined) {
-    $('#message-data').html('<h2>Please sign in to play.</h2>')
-  }
+  $('#message-game').append('<p>X Starts</p>')
   const token = store.user.token
   api.createGame(token)
     // stores the game, makes reset button appear
@@ -33,19 +28,16 @@ const onCreateGame = (event) => {
 const onShowGame = (event) => {
   event.preventDefault()
   const id = $('#game-id').val()
-  if (store.user === undefined) {
-    $('#message-data').html('<h2>Sign in first</h2>')
-  }
+
   const token = store.user.token
   api.showGame(id, token)
     .then(ui.onShowGameSuccess)
     .catch(ui.onShowGameFailure)
 }
 
-const onRedisplayGame = () => {
+const onRedisplayGame = (id) => {
   if (store.showGame) {
     const cells = store.showGame.cells
-    console.log(cells)
     ui.setBoard()
     let i = 0
     cells.forEach(
@@ -61,6 +53,10 @@ const onRedisplayGame = () => {
   } else {
     $('#message-data').text('ERROR')
   }
+  $('.close').trigger('click')
+  $('#message-game-info').html('<h3>Game ID "' + store.showGame.id + '" | Redisplay</h3>')
+  $('#message-game, #message').text('')
+  $('#create-game').text('Play a New Game')
 }
 
 const onMove = (event, id, isGameOver) => {

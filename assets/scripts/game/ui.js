@@ -5,7 +5,7 @@ const store = require('./../store.js')
 // Application Logic UI Starts Here
 
 const setBoard = function () {
-  $('#message').text('X\'s Turn')
+  $('#message-game').html('<p>X Starts</p>')
   $('#game-board').html(`
     <div class="row">
       <div id="0" class="box" over="false"></div>
@@ -27,48 +27,77 @@ const setBoard = function () {
 
 const putX = function (id) {
   $('#' + id).text('x').val('x')
-  $('#message').text('O\'s Turn')
+  $('#message-game').html('<p>O\'s Turn</p>')
 }
 
 const putO = function (id) {
   $('#' + id).text('o').val('o')
-  $('#message').text('X\'s Turn')
+  $('#message-game').html('<p>X\'s Turn</p>')
 }
 
 const onWinner = function (winner) {
-  $('#message').text('Winner is ' + winner.toUpperCase())
+  $('#message-game').html('<p>Winner is ' + winner.toUpperCase() + '</p>')
   $('.box').off('click')
+  $('#message-game-info').html(`<h3>Game ID: ${store.game.id}</h3>`)
 }
 
 const onDraw = function () {
-  $('#message').text('DRAW!!')
+  $('#message-game').html('<p>It\'s a Tie!!</p>')
+  $('#message-game-info').html(`<h3>Game ID: ${store.game.id}</h3>`)
   $('.box').off('click')
 }
 
 const alertPlayer = function () {
-  alert('Pick an empty cell')
+  $('#message-game').html('<p>Play on an empty cell.</p>')
 }
 // Application Logic UI Ends Here
 
 // Game UI Starts Here
 
 const onGetGamesSuccess = (response) => {
-  $('#message-data').html('You got them in the console.')
-  console.log(response)
+  $('#game-statistics').html(`
+      <h5>Total games played: ${response.games.length} </h5>
+    `)
+
+  $('#history-table').html('')
+  response.games.forEach((game) => {
+    const gameID = game.id
+    const playerX = game.player_x.email
+    let playerO = 'None'
+    if (game.player_o !== null) {
+      playerO = game.player_o.email
+    }
+    const state = game.over
+    $('#history-table').append(`
+      <tr>
+        <th scope="row"><a href="#">${gameID}</th>
+        <td>${playerX}</td>
+        <td>${playerO}</td>
+        <td>${state}</td>
+      </tr>
+    `)
+  })
+
+  $('#history-table a').on('click', (event) => {
+    console.log('works')
+    $('#game-id').val(event.target.text)
+    $('#show-game').trigger('submit')
+  })
 }
 
 const onGetGamesFailure = (response) => {
-  $('#message-data').html('<h2> Have you signed in?</h2>')
+  $('#message-data').html('<h3> ERROR. Try again.</h3>')
 }
 
 const onCreateGameSuccess = (response) => {
   store.game = response.game
-  $('#reset-button').css('visibility', 'visible')
-  console.log(response.game)
+  $('#create-game').hide()
+  $('#reset-button').show()
+  $('#message-game-info').html(`<h3>Playing... Current Game ID: ${store.game.id}</h3>`)
 }
 
 const onCreateGameFailure = () => {
-  $('#message-data').html('<h2> A server error occured. Check your internet connection and try again.</h2>')
+  $('#message-game-info').html('<h2> A server error occured. Check your internet connection and try again.</h2>')
 }
 
 const onShowGameSuccess = (response) => {
@@ -88,16 +117,18 @@ const onShowGameSuccess = (response) => {
     <h5>Game Status: ${game.over === true ? 'Finished' : 'Incomplete'} </h5>
     `)
   $('#redisplay-game').show()
+  $('show-game').trigger('reset')
 }
 
 const onShowGameFailure = () => {
   $('#message-data').html('<h2>Check your game ID. It is wrong.</h2>')
+  $('show-game').trigger('reset')
 }
 
 const onUpdateGameSuccess = (cellID, updatedVal) => {}
 
 const onUpdateGameFailure = () => {
-  $('#message').text('Connection failure with server')
+  $('#message-game').text('Connection failure with server').css('color', 'red')
 }
 
 module.exports = {
