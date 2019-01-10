@@ -256,7 +256,7 @@ footer {
   justify-content: center;
   padding-top: 5px;
   position: fixed;
-  width: 100vw;
+  width: 100%;
 }
 
 @media (max-width: 770px) {
@@ -285,17 +285,41 @@ footer {
   }
 
   .auth-wrapper {
-    position: relative;
-    right: 1%;
-    top: -80px;
     align-self: center;
     display: flex;
     justify-content: center;
+    position: relative;
+    right: 1%;
+    top: -80px;
   }
 
   .account-wrapper {
     display: flex;
     justify-content: center;
   }
+
+}
+
+@media (max-width: 270px) {
+  .header {
+    height: 230px;
+  }
+
+  .sign-in-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .game-board {
+    height: 280px;
+    width: 280px;
+  }
+
+  .box {
+    font-size: $square-dimensions * .8;
+    height: 70px;
+    width: 70px;
+  }
+
 
 }
