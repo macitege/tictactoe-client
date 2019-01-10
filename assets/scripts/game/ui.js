@@ -105,7 +105,7 @@ const onCreateGameSuccess = (response) => {
   $('#create-game').hide()
   $('#reset-button').show()
   // Show current game id to the player
-  $('#message-game-info').html(`<h3>Playing... Current Game ID: ${store.game.id}</h3>`)
+  $('#message-game-info').html(`<p>Playing... Current Game ID: ${store.game.id}</p>`)
 }
 
 const onCreateGameFailure = () => {
@@ -132,12 +132,12 @@ const onShowGameSuccess = (response) => {
   // Show redisplay button to display shown game's last state on the game board
   $('#redisplay-game').show()
   // Reset the form in the modal
-  $('show-game').trigger('reset')
+  $('#show-game').trigger('reset')
 }
 
 const onShowGameFailure = () => {
   $('#message-data').html('<h2>Check your game ID. It is wrong.</h2>')
-  $('show-game').trigger('reset')
+  $('#show-game').trigger('reset')
 }
 
 const onUpdateGameSuccess = (cellID, updatedVal) => {

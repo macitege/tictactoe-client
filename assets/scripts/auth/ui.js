@@ -29,7 +29,7 @@ const onSignInSuccess = (response) => {
   // Save user info to store
   store.user = response.user
   // Greet user at top right corner
-  $('#user-info').text('Welcome, ' + store.user.email + '!')
+  $('#user-info').html('Welcome, <strong>' + store.user.email + '!</strong>')
   // Message to user
   $('#message').html('<p>Sign in successful.</p>').attr('class', 'success')
   setTimeout(() => { $('#message >p').fadeOut(500) }, 2000)
@@ -46,7 +46,7 @@ const onSignInSuccess = (response) => {
   // Show start button for game
   $('#create-game').show()
   // Change the warning "Please sign in" on the game board to "Click Start"
-  $('#game-board').html('<p>Click Start</p>')
+  $('#game-board').html('Have Fun!!!')
   // Place users name in the Past Games Modal
   $('#pastGamesHead').text('Past Games of ' + store.user.email)
   // Fetch user's past games in the Past Games Modal

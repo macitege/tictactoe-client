@@ -1,31 +1,40 @@
 @import '~bootstrap/scss/bootstrap';
 
+* {
+  font-size: none;
+}
+
 @mixin active-area {
   height: 310px;
   width: 310px;
 }
 
 $container-border-color: #5e5e5e;
-$container-bg-color: #dedede;
-$body-bg-color: #fff;
+$container-bg-color: #367BD4;
+$body-bg-color: #163154;
 $box-border-color: #fff;
 $square-dimensions: 100px;
 $caution-color: #f44;
 $hover-caution-color: #f77;
 $success-color: #7b4;
-$button-color: #fff;
+$button-color: #6B779B;
 $button-border-color: #9e9e9e;
-$button-font-color: #5e5e5e;
-$button-signup-color: #5e5efe;
+$button-font-color: #BEC8D4;
+$button-signup-color: #4952D4;
 $shadow-color: #9e9e9e;
+$header-background-color: #234F87;
 
 body {
   align-items: center;
+  background-color: $body-bg-color;
   display: flex;
+  font-family: 'Roboto Mono', monospace;
   flex-direction: column;
-  justify-content: center;
+  height: 100vh;
+  justify-content: flex-start;
 
-  > h1 {
+    h1, h2, h3, p,  {
+    color: $button-font-color;
     text-align: center;
   }
 
@@ -48,10 +57,9 @@ body {
   }
 
   header {
-    background-color: #dedede;
-    box-shadow: 1px 1px $shadow-color;
+    background-color: $header-background-color;
     display: flex;
-    height: 90px;
+    height: 110px;
     justify-content: space-between;
     margin-bottom: 30px;
     padding: 10px 10px 0;
@@ -60,14 +68,20 @@ body {
     .logo {
       border-radius: 5px;
       height: 50px;
-      margin-left: 5px;
-      margin-top: -10px;
       width: auto;
     }
 
     .account-wrapper,
-    .sign-in-wrapper,
     .auth-wrapper {
+      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+      height: 70px;
+      justify-content: space-between;
+    }
+
+
+    .sign-in-wrapper {
       align-items: flex-end;
       display: flex;
       flex-direction: column;
@@ -83,20 +97,23 @@ body {
 
       .form-control {
         font-size: 80%;
-        height: 30px;
-        width: 150px;
+      }
+
+      .sign-up-container {
+        display: flex;
+        justify-content: flex-end;
       }
 
       .sign-up-button {
         background-color: $button-signup-color;
-        color: $button-color;
-        position: relative;
-        right: 55px;
-        // width: 75px;
+        color: $button-font-color;
       }
 
-      .sign-in-button {
-        // width: 75px;
+      .sign-up-button-div {
+        display: flex;
+        justify-content: flex-end;
+        padding-left: 0;
+        padding-right: 0;
       }
 
       .sign-out-button {
@@ -117,12 +134,8 @@ body {
   }
 }
 
-.sign-up-wrapper {
-  margin: 10px;
-}
-
 .message-wrapper {
-  align-items: center;
+  align-items: space-around;
   display: flex;
   flex-direction: column;
   height: 70px;
@@ -130,16 +143,20 @@ body {
 
   .message {
     display: block;
+    font-size: 20px;
     height: 30px;
   }
 
   .message-game-info {
     display: block;
-    height: 30px;
+    font-size: 24px;
+    height: 50px;
+    margin: 10px;
   }
 
   .message-game {
     display: block;
+    font-size: 22px;
     height: 30px;
   }
 }
@@ -150,12 +167,15 @@ body {
   @include active-area;
   align-items: center;
   background-color: $container-bg-color;
-  box-shadow: 2px 2px $shadow-color;
   display: flex;
   flex-direction: column;
+  height: 50vmin;
   justify-content: center;
-
-
+  min-height: 300px;
+  min-width: 300px;
+  position: relative;
+  top: 4vh;
+  width: 50vmin;
 
   .row {
 
@@ -165,16 +185,16 @@ body {
       cursor: pointer;
       font-family: fantasy;
       font-size: $square-dimensions * .7;
-      height: $square-dimensions;
+      height: 100px;
       line-height: $square-dimensions - 10;
       padding-left: $square-dimensions * .3;
-      width: $square-dimensions;
+      width: 100px;
     }
   }
 }
 
 .game-btn {
-  margin-top: 5px;
+  display: block;
 }
 
 .game-options,
@@ -218,15 +238,45 @@ body {
 }
 
 .redisplay-button {
+  color: $button-font-color;
   display: inline-block;
 }
 
+a {
+  border-bottom: 3px solid;
+  color: $button-font-color;
+}
+
+footer {
+  background-color: $header-background-color;
+  bottom: 0;
+  display: flex;
+  font-size: 10px;
+  height: 35px;
+  justify-content: center;
+  padding-top: 5px;
+  position: fixed;
+  width: 100vw;
+}
+
 @media (max-width: 770px) {
+
+  h1 {
+    font-size: 36px;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-size: 28px;
+  }
+
   .header {
-    height: 200px;
-    flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
+    flex-direction: column;
+    height: 160px;
+    justify-content: flex-start;
   }
 
   .logo-wrapper {
@@ -236,8 +286,16 @@ body {
 
   .auth-wrapper {
     position: relative;
-    top: -80px;
     right: 1%;
+    top: -80px;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .account-wrapper {
+    display: flex;
+    justify-content: center;
   }
 
 }

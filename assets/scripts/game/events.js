@@ -17,7 +17,7 @@ const onGetGames = (event) => {
 // Create a game on api
 const onCreateGame = (event) => {
   event.preventDefault()
-  $('#message-game').append('<p>X Starts</p>')
+  $('#message-game').html('<p>X Starts</p>')
   const token = store.user.token
   api.createGame(token)
     // stores the game, makes reset button appear

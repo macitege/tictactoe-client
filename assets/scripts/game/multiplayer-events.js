@@ -25,15 +25,15 @@ const stream = () => {
   const id = store.game.id
   const token = store.user.token
   const watchURL = config.apiUrl + '/games/' + id + '/watch'
-  console.log('game id is: ' + id,
-    'game token is: ' + token,
-    'watchURL is: ' + watchURL)
+  // console.log('game id is: ' + id,
+  // 'game token is: ' + token,
+  // 'watchURL is: ' + watchURL)
   const gameWatcher = resourceWatcher(watchURL, {
     Authorization: 'Token token=' + token
   })
 
   gameWatcher.on('change', function (data) {
-    console.log(data)
+    // console.log(data)
     if (data.game && data.game.cells) {
       const diff = changes => {
         const before = changes[0]

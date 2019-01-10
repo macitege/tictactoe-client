@@ -40,6 +40,8 @@ const onJoinGameSuccess = (response) => {
       }
     }
   )
+  // Clean up the input field
+  $('#join-id').val('')
 }
 
 const onJoinGameFailure = (response) => {

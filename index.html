@@ -4,6 +4,7 @@
       <title>TicTac"Toe"</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
@@ -13,27 +14,39 @@
 
         <div class="logo-wrapper col-12 col-md-4">
 
-          <h1 class="logo-text"> TICTAC<span class="logo-span"><img class="logo" src="./public/images/toe.png" alt="A toe image"/></span> </h1>
+          <h1 class="logo-text"> tic tac <span class="logo-span"><img class="logo" src="./public/images/toe.png" alt="A toe image"/></span> </h1>
         </div>
 
         <div class="auth-wrapper col-12 col-sm-8 col-md-8">
 
           <div class="sign-in-wrapper">
-            <form id="sign-in" class="form-row">
-              <div class="col-4">
-                <input name="credentials[email]" type="email" class="form-control" id="sign-in-email" aria-describedby="emailHelp" placeholder="Enter email">
-              </div>
-              <div class="col-4">
-                <input name="credentials[password]" type="password" class="form-control" id="sign-in-password" placeholder="Password">
-              </div>
-              <div class="col-4">
-                <button type="submit" class="btn btn-primary sign-in-button">Sign In</button>
-              </div>
-            </form>
-            <!-- Button trigger modal -->
-            <button type="button" class="sign-up-button btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
-            </div>
+              <form id="sign-in" class="form-row">
+                <div class="col-5">
+                  <input name="credentials[email]" type="email" class="form-control" id="sign-in-email" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="col-5">
+                  <input name="credentials[password]" type="password" class="form-control" id="sign-in-password" placeholder="Password">
+                </div>
+                <div class="col-2">
+                  <button type="submit" class="sign-in-button btn btn-primary">Sign In</button>
+                </div>
+              </form>
 
+              <div class="container sign-up-container">
+
+                <div class="row">
+                  <!-- <div class="col-9"></div> -->
+
+                  <!-- Button trigger modal -->
+                  <div class="col-12 sign-up-button-div">
+                    <button class="sign-up-button btn btn-primary" type="button"  data-toggle="modal" data-target="#signUpModal">Sign Up</button>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+
+            <!-- Account wrapper -->
             <div id="account-wrapper" class="account-wrapper">
               <p id="user-info" class="user-info"></p>
               <div class="btn-group">
@@ -52,7 +65,6 @@
             </div>
 
         </div>
-        <div id="sign-in-message" class="sign-in-message"></div>
 
 
       </header>
@@ -67,8 +79,9 @@
           <p> Please sign in to play. </p>
         </div>
 
-        <button id="create-game" class="btn game-btn" >Start</button>
-
+<br>
+<br>
+        <button id="create-game" class="btn game-btn" >Click for a New Game</button>
         <button id="reset-button" class="btn game-btn">Restart</button>
 
 
@@ -84,23 +97,27 @@
               </div>
               <div class="modal-body">
 
-                <section class="sign-up-wrapper">
+                <div class="sign-up-wrapper">
                   <form id="sign-up" class="form-group">
+
                     <div class="col">
                       <input id="email-up" name="credentials[email]" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
                     </div>
+
                     <div class="col">
                       <input name="credentials[password]" type="password" class="form-control password-up" placeholder="Password">
                     </div>
+
                     <div class="col">
                       <input name="credentials[password_confirmation]" type="password" class="form-control password-up" placeholder="Confirm Password">
                     </div>
+
                     <div class="modal-footer">
                       <div id="sign-up-message" class="sign-up-message"></div>
                     <button type="submit" class="btn btn-primary">Register</button>
                       </div>
                   </form>
-                </section>
+                </div>
 
               </div>
             </div>
@@ -183,6 +200,8 @@
             </div>
           </div>
         </div>
-
+        <footer>
+          <p><em> m. ege ercan © 2019</em></p>
+        </footer>
     </body>
 </html>
