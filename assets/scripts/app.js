@@ -12,7 +12,6 @@ $('#reset-button').hide()
 $('#redisplay-game').on('click', gameEvents.onRedisplayGame).hide()
 $('#get-games').on('click', gameEvents.onGetGames).hide()
 
-
 $(() => {
   // Start game
   $('#create-game').on('click', gameEvents.onCreateGame)

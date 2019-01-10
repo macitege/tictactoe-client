@@ -10,30 +10,33 @@
 }
 
 $container-border-color: #5e5e5e;
-$container-bg-color: #367BD4;
+$container-bg-color: #367bd4;
 $body-bg-color: #163154;
 $box-border-color: #fff;
 $square-dimensions: 100px;
 $caution-color: #f44;
 $hover-caution-color: #f77;
 $success-color: #7b4;
-$button-color: #6B779B;
+$button-color: #6b779b;
 $button-border-color: #9e9e9e;
-$button-font-color: #BEC8D4;
-$button-signup-color: #4952D4;
+$button-font-color: #bec8d4;
+$button-signup-color: #4952d4;
 $shadow-color: #9e9e9e;
-$header-background-color: #234F87;
+$header-background-color: #234f87;
 
 body {
   align-items: center;
   background-color: $body-bg-color;
   display: flex;
-  font-family: 'Roboto Mono', monospace;
   flex-direction: column;
+  font-family: 'Roboto Mono', monospace;
   height: 100vh;
   justify-content: flex-start;
 
-    h1, h2, h3, p,  {
+  h1,
+  h2,
+  h3,
+  p,  {
     color: $button-font-color;
     text-align: center;
   }

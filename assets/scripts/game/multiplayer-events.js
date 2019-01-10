@@ -6,7 +6,6 @@ const multiplayerUI = require('./multiplayer-ui.js')
 const resourceWatcher = require('./resource-watcher.js')
 const config = require('./../config.js')
 
-
 // Join other games as player_o
 const onJoinGame = (event) => {
   event.preventDefault()
@@ -17,7 +16,6 @@ const onJoinGame = (event) => {
     .then(multiplayerUI.onJoinGameSuccess).then(() => { stream() })
     .catch(multiplayerUI.onJoinGameFailure)
 }
-
 
 // function for watch action on api (works well but not now how to display it)
 // from opponents board

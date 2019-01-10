@@ -68,7 +68,8 @@ const onGetGamesSuccess = (response) => {
   $('#game-statistics').html(`
       <h5>Total games played: ${response.games.length} </h5>
     `)
-// Create table for past games
+
+  // Create table for past games
   $('#history-table').html('')
   response.games.forEach((game) => {
     const gameID = game.id
