@@ -4,6 +4,7 @@ const store = require('./../store.js')
 const ui = require('./ui.js')
 const gameLogic = require('./game-logic.js')
 
+// give information about the game joined to the player
 const onJoinGameSuccess = (response) => {
   store.game = response.game
   const game = store.game
@@ -24,7 +25,7 @@ const onJoinGameSuccess = (response) => {
     <h5>Player-2: ${playerO} </h5>
     <h5>Game Status: ${game.over === true ? 'Finished' : 'Incomplete'} </h5>
     `)
-
+  // create the current game on newly joined player's game board
   const cells = game.cells
   ui.setBoard()
   $('.box').on('click', gameLogic.makeMove)

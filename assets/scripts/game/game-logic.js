@@ -40,7 +40,7 @@ let isGameOver = false
 const whoWon = function (id) {
   // Callback function for .reduce()
   const isSame = (acc, curr) => acc + curr
-  // Cell tracks that should contain x or o to create winner
+  // Cell tracks that should contain 3 'x's or 'o's in a row to create winner
   const c = cells
   const winnerTracks = {
     track0: [c[0], c[1], c[2]],
@@ -70,6 +70,12 @@ const whoWon = function (id) {
       isGameOver = true
     }
   }
+  // send updates to the api
+  // This hidden button is being used to trigger update process of a game on api
+  // Because circular require is not possible, this file cannot be required by
+  // 'ui.js'. So, this button is created to send a data to 'ui.js' through
+  // 'events.js'. I needed this because I wasn't able to invoke a function Here
+  // from 'ui.js'.
   $('#send-to-api').trigger('click', [id, isGameOver])
 }
 

@@ -2,23 +2,25 @@
 
 const store = require('./../store.js')
 const api = require('./api.js')
-// const ui = require('./ui.js')
 const multiplayerUI = require('./multiplayer-ui.js')
 const resourceWatcher = require('./resource-watcher.js')
 const config = require('./../config.js')
 
+
+// Join other games as player_o
 const onJoinGame = (event) => {
   event.preventDefault()
+  // Pull the game id from input field
   const id = $('#join-id').val()
-  if (store.user === undefined) {
-    $('#message-data').html('<h5>Sign in and create a game first</h5>')
-  }
   const token = store.user.token
   api.joinGame(id, token)
     .then(multiplayerUI.onJoinGameSuccess).then(() => { stream() })
     .catch(multiplayerUI.onJoinGameFailure)
 }
 
+
+// function for watch action on api (works well but not now how to display it)
+// from opponents board
 const stream = () => {
   const id = store.game.id
   const token = store.user.token

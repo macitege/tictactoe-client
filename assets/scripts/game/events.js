@@ -5,6 +5,7 @@ const api = require('./api.js')
 const ui = require('./ui.js')
 const gameLogic = require('./game-logic.js')
 
+// Api call for fetchin all games
 const onGetGames = (event) => {
   event.preventDefault()
   const token = store.user.token
@@ -13,6 +14,7 @@ const onGetGames = (event) => {
     .catch(ui.onGetGamesFailure)
 }
 
+// Create a game on api
 const onCreateGame = (event) => {
   event.preventDefault()
   $('#message-game').append('<p>X Starts</p>')
@@ -24,7 +26,7 @@ const onCreateGame = (event) => {
     .then(gameLogic.setGame)
     .catch(ui.onCreateGameFailure)
 }
-
+// Bring up a game by id
 const onShowGame = (event) => {
   event.preventDefault()
   const id = $('#game-id').val()
@@ -35,6 +37,7 @@ const onShowGame = (event) => {
     .catch(ui.onShowGameFailure)
 }
 
+// Bring up a game's last state and display it on the game board
 const onRedisplayGame = (id) => {
   if (store.showGame) {
     const cells = store.showGame.cells
@@ -60,13 +63,23 @@ const onRedisplayGame = (id) => {
   $('#reset-button').text('Play a New Game')
 }
 
+/* This function is being triggered by a hidden button named 'send-to-api'
+Whenever the gameboard is initialized with start button, an event handler is
+being assigned on every cell with 'makeMove' function. Make move function
+puts the proper sign on the cell and invokes 'whoWon' function to evaluate
+the board if there is a winner.
+And finally, 'whoWon' function invokes this function (onMove) and this Function
+sends the updated game information to api. Id and isGameOver arguments passed
+by 'whoWon' function. */
 const onMove = (event, id, isGameOver) => {
   event.preventDefault()
   const cellID = id
   const gameID = store.game.id
   const token = store.user.token
+  // pull the text inside the cell by id passed by former function 'whoWon'
   const val = $('#' + cellID).val().toString()
   const isOver = isGameOver
+  // create data object to sent the api
   const data = {
     'game': {
       'cell': {
@@ -76,6 +89,7 @@ const onMove = (event, id, isGameOver) => {
       'over': isOver
     }
   }
+  // api request
   api.updateGame(token, gameID, data)
     .then((response) => {
       const updatedVal = response.game.cells[cellID]

@@ -1,5 +1,6 @@
 'use strict'
 
+// wrapper for watch action
 const resourceWatcher = function (url, conf) {
   const token = function (conf) {
     return conf && (conf = conf.Authorization) &&
