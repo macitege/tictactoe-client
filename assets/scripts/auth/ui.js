@@ -61,7 +61,7 @@ const onSignInFailure = () => {
   $('#sign-in-email').css('border-color', '#f44')
   $('#sign-in-password').css('border-color', '#f44')
   // reset the form
-  $('#sign-up').trigger('reset')
+  $('#sign-in').trigger('reset')
 }
 
 const onChangePWSuccess = () => {

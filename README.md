@@ -52,4 +52,14 @@ time.
 - I also want to add 'Stretch Goals' given in project document.
 
 ### Initial Project
-[Wire Frame and User Stories](https://git.generalassemb.ly/macitege/game-project-scope-study/blob/response/study.md)
+#### Wire Frame:
+[TIC TAC TOE Wire Frame](https://i.imgur.com/6unEmJc.jpg)
+#### User Stories:
+- As a player, I want to create an account.
+- As a player, I want be able to change my password.
+- As a player, I want see the game history that I have played.
+- As a player, I want show the info of a past game that I have played.
+- As a player, I want to see whose turn it is, so that I will know I should wait or play.
+- As a player, I don't want to be allowed to click on a cell that is containing an 'x' or an 'o'
+- As a player, I want to restart the game after a session finishes, so that I don't have to refresh the page and sign in again.
+- As a player, if a game is over, I don't want to be allowed to put more 'x's or 'o's on the game board.
