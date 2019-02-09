@@ -51,6 +51,7 @@ const onSignInSuccess = (response) => {
   $('#pastGamesHead').text('Past Games of ' + store.user.email)
   // Fetch user's past games in the Past Games Modal
   $('#get-games').trigger('click')
+  $('#play-without-signin').hide()
 }
 
 const onSignInFailure = () => {

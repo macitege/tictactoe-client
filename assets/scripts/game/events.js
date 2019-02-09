@@ -23,7 +23,7 @@ const onCreateGame = (event) => {
     // stores the game, makes reset button appear
     .then(ui.onCreateGameSuccess)
     // sets the game board when game is created
-    .then(gameLogic.setGame)
+    .then(() => { gameLogic.setGame('regular', true) })
     .catch(ui.onCreateGameFailure)
 }
 // Bring up a game by id
@@ -57,7 +57,7 @@ const onRedisplayGame = (id) => {
     $('#message-data').text('ERROR')
   }
   $('.close').trigger('click')
-  $('#message-game-info').html('<h3>Game ID "' + store.showGame.id + '" | Redisplay</h3>')
+  $('#message-game-info').html('<p>Game ID "' + store.showGame.id + '" | Redisplay</p>')
   $('#message-game, #message').text('')
   $('#create-game').text('Play a New Game')
   $('#reset-button').text('Play a New Game')
@@ -98,10 +98,17 @@ const onMove = (event, id, isGameOver) => {
     .catch(ui.onUpdateGameFailure)
 }
 
+const showMenu = () => {
+  $('#game-board').html('')
+  $('#play-without-signin, #play-against-ai').show()
+  $('#back-button, #reset-button, #easy, #hard').hide()
+}
+
 module.exports = {
   onCreateGame,
   onMove,
   onShowGame,
   onGetGames,
-  onRedisplayGame
+  onRedisplayGame,
+  showMenu
 }

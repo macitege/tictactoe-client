@@ -1,14 +1,5 @@
 @import '~bootstrap/scss/bootstrap';
 
-* {
-  font-size: none;
-}
-
-@mixin active-area {
-  height: 310px;
-  width: 310px;
-}
-
 $container-border-color: #5e5e5e;
 $container-bg-color: #367bd4;
 $body-bg-color: #163154;
@@ -19,188 +10,233 @@ $hover-caution-color: #f77;
 $success-color: #7b4;
 $button-color: #6b779b;
 $button-border-color: #9e9e9e;
-$button-font-color: #bec8d4;
+$button-font-color: #ddd;
 $button-signup-color: #4952d4;
-$shadow-color: #9e9e9e;
+$shadow-color: #234f87;
 $header-background-color: #234f87;
+$box-hover-color: #234f87;
+$game-board-bg-color: #367bd4;
+$player-menu-bg-color: rgba(35, 79, 135, .9);
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,  {
+  font-size: 16;
+}
 
 body {
-  align-items: center;
   background-color: $body-bg-color;
-  display: flex;
-  flex-direction: column;
   font-family: 'Roboto Mono', monospace;
   height: 100vh;
-  justify-content: flex-start;
+  padding-bottom: 60px;
 
-  h1,
-  h2,
-  h3,
-  p,  {
-    color: $button-font-color;
-    text-align: center;
-  }
-
-  .btn {
-    background-color: $button-color;
-    border-color: $button-border-color;
-    color: $button-font-color;
-    cursor: pointer;
-    font-size: .8rem;
-    height: 30px;
-
-    &:hover {
-      background-color: $button-border-color;
-      border-color: $button-border-color;
-    }
-  }
-
-  table {
-    font-size: 16px;
-  }
-
-  header {
-    background-color: $header-background-color;
-    display: flex;
-    height: 110px;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    padding: 10px 10px 0;
-    width: 100vw;
-
-    .logo {
-      border-radius: 5px;
-      height: 50px;
-      width: auto;
-    }
-
-    .account-wrapper,
-    .auth-wrapper {
-      align-items: flex-end;
-      display: flex;
-      flex-direction: column;
-      height: 70px;
-      justify-content: space-between;
-    }
-
-
-    .sign-in-wrapper {
-      align-items: flex-end;
-      display: flex;
-      flex-direction: column;
-      height: 70px;
-      justify-content: space-between;
-
-      .user-info {
-        color: $button-font-color;
-        font-size: 16px;
-        margin-bottom: 0;
-        padding: 5px;
-      }
-
-      .form-control {
-        font-size: 80%;
-      }
-
-      .sign-up-container {
-        display: flex;
-        justify-content: flex-end;
-      }
-
-      .sign-up-button {
-        background-color: $button-signup-color;
-        color: $button-font-color;
-      }
-
-      .sign-up-button-div {
-        display: flex;
-        justify-content: flex-end;
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      .sign-out-button {
-        border-color: $caution-color;
-        color: $caution-color;
-        margin-top: 5px;
-
-        &:hover {
-          background-color: $hover-caution-color;
-          color: $button-color;
-        }
-      }
-    }
-
-    .account-wrapper {
-      visibility: hidden;
-    }
-  }
+  // &:active {
+  //   background-color: #4952d4;
+  // }
 }
+
+footer {
+  background-color: $header-background-color;
+  bottom: 0;
+  display: flex;
+  font-size: 10px;
+  height: 35px;
+  justify-content: center;
+  padding-top: 5px;
+  position: fixed;
+  width: 100%;
+}
+
 
 .message-wrapper {
   align-items: space-around;
   display: flex;
   flex-direction: column;
-  height: 70px;
-  width: 100vw;
+  padding: 0;
+  width: 100%;
 
-  .message {
+  .message,
+  .message-game-info,
+  .message-game {
     display: block;
     font-size: 20px;
     height: 30px;
-  }
-
-  .message-game-info {
-    display: block;
-    font-size: 24px;
-    height: 50px;
-    margin: 10px;
-  }
-
-  .message-game {
-    display: block;
-    font-size: 22px;
-    height: 30px;
+    margin: 0;
+    width: 100%;
   }
 }
 
-
-
-.game-board {
-  @include active-area;
+.main {
   align-items: center;
-  background-color: $container-bg-color;
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+// .player-menu,
+.game-board {
+  background-color: $game-board-bg-color;
+  height: 300px;
+  transform: translate(-150px);
+  width: 300px;
+}
+
+.player-menu {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  height: 50vmin;
   justify-content: center;
-  min-height: 300px;
-  min-width: 300px;
-  position: relative;
-  top: 4vh;
-  width: 50vmin;
+  transform: translate(150px);
+  width: 280px;
+  z-index: 1;
 
-  .row {
+  .play-without-signin {
 
-    .box {
-      border: 2px solid $box-border-color;
-      color: $box-border-color;
-      cursor: pointer;
-      font-family: fantasy;
-      font-size: $square-dimensions * .7;
-      height: 100px;
-      line-height: $square-dimensions - 10;
-      padding-left: $square-dimensions * .3;
-      width: 100px;
-    }
+  }
+
+  .play-against-ai {
+
   }
 }
 
-.game-btn {
-  display: block;
+.row {
+  margin: 0;
+  padding: 0;
 }
 
-.game-options,
+.box {
+  border: 1px solid $box-border-color;
+  border-radius: 5px;
+  color: $box-border-color;
+  cursor: pointer;
+  display: flex;
+  font-family: fantasy;
+  font-size: 70px;
+  height: 100px;
+  justify-content: center;
+  transition: .4s;
+  width: 100px;
+
+  .p {
+    height: 10px;
+    margin: auto;
+    width: 10px;
+  }
+
+  &:hover {
+    background-color: $box-hover-color;
+  }
+}
+
+
+h1,
+h2,
+h3,
+p,  {
+  color: $button-font-color;
+  text-align: center;
+}
+
+.btn {
+  background-color: $button-color;
+  border-color: $button-border-color;
+  color: $button-font-color;
+  cursor: pointer;
+  font-size: 12px;
+  height: 30px;
+
+  &:hover {
+    background-color: $button-border-color;
+    border-color: $button-border-color;
+  }
+}
+
+table {
+  // font-size: 16px;
+}
+
+header {
+  background-color: $header-background-color;
+  display: flex;
+  height: 110px;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding: 10px 10px 0;
+  width: 100vw;
+
+  .logo {
+    border-radius: 5px;
+    height: 50px;
+    width: auto;
+  }
+
+  .account-wrapper,
+  .auth-wrapper {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    height: 70px;
+    justify-content: space-between;
+  }
+
+
+  .sign-in-wrapper {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    height: 70px;
+    justify-content: space-between;
+
+    .user-info {
+      color: $button-font-color;
+      font-size: 16px;
+      margin-bottom: 0;
+      padding: 5px;
+    }
+
+    .form-control {
+      font-size: 80%;
+    }
+
+    .sign-up-container {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .sign-up-button {
+      background-color: $button-signup-color;
+      color: $button-font-color;
+    }
+
+    .sign-up-button-div {
+      display: flex;
+      justify-content: flex-end;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .sign-out-button {
+      border-color: $caution-color;
+      color: $caution-color;
+      margin-top: 5px;
+
+      &:hover {
+        background-color: $hover-caution-color;
+        color: $button-color;
+      }
+    }
+  }
+
+  .account-wrapper {
+    visibility: hidden;
+  }
+}
+
 .changepw-wrapper {
   border: 1px solid $container-border-color;
   height: 310px;
@@ -211,14 +247,14 @@ body {
 .success {
   color: $success-color;
   display: block;
-  font-size: 18px;
+  font-size: 16px;
   height: 20px;
 }
 
 .fail {
   color: $caution-color;
   display: block;
-  font-size: 18px;
+  font-size: 16px;
   height: 20px;
 }
 
@@ -249,30 +285,9 @@ a {
   border-bottom: 3px solid;
   color: $button-font-color;
 }
-
-footer {
-  background-color: $header-background-color;
-  bottom: 0;
-  display: flex;
-  font-size: 10px;
-  height: 35px;
-  justify-content: center;
-  padding-top: 5px;
-  position: fixed;
-  width: 100%;
-}
-
 @media (max-width: 770px) {
-
   h1 {
     font-size: 36px;
-  }
-
-  h2,
-  h3,
-  h4,
-  h5 {
-    font-size: 28px;
   }
 
   .header {
@@ -323,6 +338,4 @@ footer {
     height: 70px;
     width: 70px;
   }
-
-
 }

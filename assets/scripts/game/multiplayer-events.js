@@ -11,6 +11,7 @@ const onJoinGame = (event) => {
   event.preventDefault()
   // Pull the game id from input field
   const id = $('#join-id').val()
+  store.joinedGameID = id
   const token = store.user.token
   api.joinGame(id, token)
     .then(multiplayerUI.onJoinGameSuccess).then(() => { stream() })
@@ -20,18 +21,20 @@ const onJoinGame = (event) => {
 // function for watch action on api (works well but not now how to display it)
 // from opponents board
 const stream = () => {
-  const id = store.game.id
+  const id = store.joinedGameID
   const token = store.user.token
   const watchURL = config.apiUrl + '/games/' + id + '/watch'
-  // console.log('game id is: ' + id,
-  // 'game token is: ' + token,
-  // 'watchURL is: ' + watchURL)
+
+  console.log('game id is: ' + id,
+    'game token is: ' + token,
+    'watchURL is: ' + watchURL)
+
   const gameWatcher = resourceWatcher(watchURL, {
     Authorization: 'Token token=' + token
   })
 
   gameWatcher.on('change', function (data) {
-    // console.log(data)
+    console.log(data)
     if (data.game && data.game.cells) {
       const diff = changes => {
         const before = changes[0]

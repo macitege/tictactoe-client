@@ -1,18 +1,40 @@
 'use strict'
 
 const ui = require('./ui')
-
+const bot = require('./bot')
+const gameEvents = require('./events.js')
 // Array  that represents cells on the game board
 let cells = ['', '', '', '', '', '', '', '', '']
 // Variable that holds last players info, so that engine can check who was the last player
 let lastPlayer = null
 
 // For setting or resetting the game board
-const setGame = function () {
-  cells = ['', '', '', '', '', '', '', '', '']
-  lastPlayer = null
-  ui.setBoard()
-  $('.box').on('click', makeMove)
+const setGame = function (type, signIn) {
+  if (type === 'ai' && signIn === false) {
+    bot.resetBoardHistory()
+    $('#easy, #hard').show().on('click', (event) => {
+      if (event.target.id === 'hard') {
+        $('#easy, #hard').hide()
+        ui.setBoard()
+        $('.box').on('click', bot.makeMove)
+      } else {
+        $('#easy, #hard').hide()
+        ui.setBoard()
+        $('.box').on('click', (event, level) => bot.makeMove(event, 'easy'))
+      }
+    })
+  } else if (type === 'regular' && signIn === false) {
+    cells = ['', '', '', '', '', '', '', '', '']
+    lastPlayer = null
+    ui.setBoard()
+    $('.box').on('click', makeMove)
+  } else if (type === 'regular' && signIn === true) {
+    cells = ['', '', '', '', '', '', '', '', '']
+    lastPlayer = null
+    ui.setBoard()
+    $('.box').on('click', makeMove)
+    $('#reset-button').on('click', gameEvents.onCreateGame)
+  }
 }
 
 // Function that allows user to make move
@@ -59,7 +81,7 @@ const whoWon = function (id) {
     const winner = winnerTracks[track][0][0]
     // if there is a match
     if (trackValue === 'xxx' || trackValue === 'ooo') {
-      ui.onWinner(winner)
+      ui.onWinner(winner, track)
       isGameOver = true
       break
       /* If the last move was the winner move, break would end the condition here.

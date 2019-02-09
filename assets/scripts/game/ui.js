@@ -27,31 +27,59 @@ const setBoard = function () {
 
 // Put x on the cell
 const putX = function (id) {
-  $('#' + id).text('x').val('x')
+  $('#' + id).html('<p>x</p>')
   // Inform players
   $('#message-game').html('<p>O\'s Turn</p>')
 }
 
 // Put o and inform players
 const putO = function (id) {
-  $('#' + id).text('o').val('o')
+  $('#' + id).html('<p>o</p>')
   $('#message-game').html('<p>X\'s Turn</p>')
 }
 
 // When there is winner
-const onWinner = function (winner) {
+const onWinner = function (winner, track) {
   // Announce winner
   $('#message-game').html('<p>Winner is ' + winner.toUpperCase() + '</p>')
   // Turn off event handler on boxes
   $('.box').off('click')
   // Adjust player message
-  $('#message-game-info').html(`<h3>Game ID: ${store.game.id}</h3>`)
+  $('#message-game-info').html(`<p>Game ID: ${store.game.id}</p>`)
+
+  const winnerTrack = track
+  switch (winnerTrack) {
+    case 'track0':
+      $('#0, #1, #2').css('background-color', '#6b779b')
+      break
+    case 'track1':
+      $('#3, #4, #5').css('background-color', '#6b779b')
+      break
+    case 'track2':
+      $('#6, #7, #8').css('background-color', '#6b779b')
+      break
+    case 'track3':
+      $('#0, #3, #6').css('background-color', '#6b779b')
+      break
+    case 'track4':
+      $('#1, #4, #7').css('background-color', '#6b779b')
+      break
+    case 'track5':
+      $('#2, #5, #8').css('background-color', '#6b779b')
+      break
+    case 'track6':
+      $('#0, #4, #8').css('background-color', '#6b779b')
+      break
+    case 'track7':
+      $('#2, #4, #6').css('background-color', '#6b779b')
+      break
+  }
 }
 
 // When it's a tie announce it, adjust player message, turn off btn eventhandler
 const onDraw = function () {
   $('#message-game').html('<p>It\'s a Tie!!</p>')
-  $('#message-game-info').html(`<h3>Game ID: ${store.game.id}</h3>`)
+  $('#message-game-info').html(`<p>Game ID: ${store.game.id}</p>`)
   $('.box').off('click')
 }
 
@@ -103,8 +131,6 @@ const onGetGamesFailure = (response) => {
 // When a new game is created, inform player, hide start button, show restart button
 const onCreateGameSuccess = (response) => {
   store.game = response.game
-  $('#create-game').hide()
-  $('#reset-button').show()
   // Show current game id to the player
   $('#message-game-info').html(`<p>Playing... Current Game ID: ${store.game.id}</p>`)
 }
@@ -125,10 +151,10 @@ const onShowGameSuccess = (response) => {
     playerO = 'None'
   }
   $('#message-data').html(`
-    <h5>Game ID: ${game.id} </h5>
-    <h5>Player-1: ${playerX} </h5>
-    <h5>Player-2: ${playerO} </h5>
-    <h5>Game Status: ${game.over === true ? 'Finished' : 'Incomplete'} </h5>
+    <p>Game ID: ${game.id} </p>
+    <p>Player-1: ${playerX} </p>
+    <p>Player-2: ${playerO} </p>
+    <p>Game Status: ${game.over === true ? 'Finished' : 'Incomplete'} </p>
     `)
   // Show redisplay button to display shown game's last state on the game board
   $('#redisplay-game').show()
@@ -137,7 +163,7 @@ const onShowGameSuccess = (response) => {
 }
 
 const onShowGameFailure = () => {
-  $('#message-data').html('<h2>Check your game ID. It is wrong.</h2>')
+  $('#message-data').html('<p>Check your game ID. It is wrong.</p>')
   $('#show-game').trigger('reset')
 }
 

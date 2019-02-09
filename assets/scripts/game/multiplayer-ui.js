@@ -20,10 +20,10 @@ const onJoinGameSuccess = (response) => {
     <h3>Game Info:</h3>
     `)
   $('#message-data').append(`
-    <h5>Game ID: ${game.id} </h5>
-    <h5>Player-1: ${playerX} </h5>
-    <h5>Player-2: ${playerO} </h5>
-    <h5>Game Status: ${game.over === true ? 'Finished' : 'Incomplete'} </h5>
+    <p>Game ID: ${game.id} </p>
+    <p>Player-1: ${playerX} </p>
+    <p>Player-2: ${playerO} </p>
+    <p>Game Status: ${game.over === true ? 'Finished' : 'Incomplete'} </p>
     `)
   // create the current game on newly joined player's game board
   const cells = game.cells
