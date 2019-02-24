@@ -1,12 +1,10 @@
 'use strict'
 
-import Typed from 'typed.js'
+// import Typed from 'typed.js'
 const accountEvents = require('./auth/events.js')
 const gameEvents = require('./game/events.js')
 const multiPlayer = require('./game/multiplayer-events.js')
-const ui = require('./game/ui')
 const gameLogic = require('./game/game-logic.js')
-const bot = require('./game/bot')
 // These jQuerys must happen before everything to ensure nothing will appear
 // on the page that are not supposed to appear. That's why they are seperated.
 $('#account-wrapper').hide()
@@ -14,7 +12,6 @@ $('#create-game').hide()
 $('#reset-button, #easy, #hard, #back-button, #back-to-menu').hide()
 $('#redisplay-game').on('click', gameEvents.onRedisplayGame).hide()
 $('#get-games').on('click', gameEvents.onGetGames).hide()
-
 $(() => {
   // Start game
   $('#create-game').on('click', gameEvents.onCreateGame)
@@ -41,7 +38,7 @@ $(() => {
       $('#easy, #hard').show().on('click', (event) => {
         if (event.target.id === 'hard') {
           $('#easy, #hard, #back-button').hide()
-          $('#reset-button').show()
+          $('#reset-button, #back-to-menu').show()
           $('#message-game').html('<p>Human Starts</p>')
           gameLogic.setGame('ai', false, 'hard')
           $('#reset-button').on('click', () => {
@@ -50,7 +47,7 @@ $(() => {
           })
         } else {
           $('#easy, #hard, #back-button').hide()
-          $('#reset-button').show()
+          $('#reset-button, #back-to-menu').show()
           $('#message-game').html('<p>Human Starts</p>')
           gameLogic.setGame('ai', false, 'easy')
 

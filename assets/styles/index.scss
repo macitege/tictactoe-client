@@ -61,6 +61,14 @@ body {
   }
 }
 
+#orientation-alert {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  visibility: hidden;
+  color: tomato;
+}
+
 
 
 .message-wrapper {
@@ -91,8 +99,12 @@ body {
 
 .game-board {
   background-color: $game-board-bg-color;
+  border-radius: 5px;
   height: 300px;
   width: 300px;
+  margin-top: 10px;
+  display: flex;
+
 }
 
 .player-menu {
@@ -119,6 +131,10 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
+
+  .btn {
+    margin: 10px;
+  }
 }
 
 .row {
@@ -136,7 +152,7 @@ body {
   font-size: 70px;
   height: 100px;
   justify-content: center;
-  transition: .4s;
+  transition: .1s;
   width: 100px;
   z-index: 3;
 
@@ -268,7 +284,8 @@ a {
   border-bottom: 3px solid;
   color: $button-font-color;
 }
-@media (max-width: 770px) {
+
+@media screen and (max-width: 770px) {
   h1 {
     font-size: 36px;
   }
@@ -301,7 +318,7 @@ a {
 
 }
 
-@media (max-width: 310px) {
+@media screen and (max-width: 330px) {
   .header {
     height: 230px;
   }
@@ -323,7 +340,7 @@ a {
   }
 }
 
-@media (max-width: 230px) {
+@media screen and (max-width: 230px) {
   .header {
     height: 230px;
   }
@@ -342,5 +359,21 @@ a {
     font-size: $square-dimensions * .45;
     height: 60px;
     width: 60px;
+  }
+}
+
+@media only screen and (max-height: 500px) {
+  body {
+    height: auto;
+    padding: 50px;
+    & > * {
+      visibility: hidden;
+    }
+  }
+
+  #orientation-alert {
+    height: auto;
+    visibility: visible;
+    margin: 50px auto;
   }
 }
