@@ -10,66 +10,37 @@
     </head>
     <body>
 
-      <header id="page-top" class="header">
+      <nav class="navbar navbar-dark shadow-lg">
+        <h1 class="logo-text navbar-brand"><span class="logo-span">TIC TAC "<img class="logo" src="./public/images/toe.png" alt="A toe image"/>"</span> </h1>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#authCollapsible" aria-controls="authCollapsible" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <div class="logo-wrapper col-12 col-md-4">
-
-          <h1 class="logo-text"><span class="logo-span"><img class="logo" src="./public/images/toe.png" alt="A toe image"/></span> </h1>
-        </div>
-
-        <div class="auth-wrapper col-12 col-sm-8 col-md-8">
-
-          <div class="sign-in-wrapper">
-
-              <form id="sign-in" class="form-row">
-                <div class="col-5">
-                  <input name="credentials[email]" type="email" class="form-control" id="sign-in-email" aria-describedby="emailHelp" placeholder="Enter email">
+        <div class="collapse navbar-collapse" id="authCollapsible">
+          <div class="navbar-nav">
+            <form id="sign-in" class="form-inline sign-in-wrapper">
+                <div class="inputs">
+                  <input name="credentials[email]" type="email" class="form-control mr-sm-2" id="sign-in-email" aria-describedby="emailHelp" placeholder="Enter email">
+                  <input name="credentials[password]" type="password" class="form-control mr-sm-2" id="sign-in-password" placeholder="Password">
                 </div>
-                <div class="col-5">
-                  <input name="credentials[password]" type="password" class="form-control" id="sign-in-password" placeholder="Password">
+                <div class="btn-group">
+                  <button type="submit" class="sign-in-button btn btn-light">Sign In</button>
+                  <button class="sign-up-button btn btn-warning" type="button"  data-toggle="modal" data-target="#signUpModal">Sign Up</button>
                 </div>
-                <div class="col-2">
-                  <button type="submit" class="sign-in-button btn btn-primary">Sign In</button>
-                </div>
-              </form>
+            </form>
 
-              <div class="container sign-up-container">
+            <div id="account-wrapper" class="account-wrapper">
 
-                <div class="row">
-                  <div class="col-10">
-                  </div>
-                  <!-- Button trigger modal -->
-                  <div class="col-2 sign-up-button-div">
-                    <button class="sign-up-button btn btn-primary" type="button"  data-toggle="modal" data-target="#signUpModal">Sign Up</button>
-                  </div>
-                </div>
-              </div>
+              <button type="button" class="btn" data-toggle="modal" data-target="#changePwModal">Change Password</button>
+              <button id="past-games-button" type="button" class="btn" data-toggle="modal" data-target="#gameHistoryModal">Game History</button>
+              <button id="sign-out" type="submit" class="btn">Sign Out</button>
 
-          </div>
-
-
-          <div id="account-wrapper" class="account-wrapper">
-              <p id="user-info" class="user-info"></p>
-              <div class="btn-group">
-                <button class="btn btn-secondary btn-sm dropdown-toggle account-button" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Account
-                </button>
-                <div class="dropdown-menu dropdown-menu-right pt-1">
-                  <button type="button" class="change-password-button dropdown-item btn m-1" data-toggle="modal" data-target="#changePwModal">Change Password</button>
-
-                  <button id="past-games-button" type="button" class="change-password-button dropdown-item btn m-1" data-toggle="modal" data-target="#gameHistoryModal">Game History</button>
-
-                  <button id="sign-out" type="submit" class="dropdown-item btn btn-primary sign-out-button m-1">Sign Out</button>
-
-                </div>
-              </div>
             </div>
-
+          </div>
         </div>
+      </nav>
 
-
-      </header>
-
+        <p id="user-info" class="user-info"></p>
         <div class="message-wrapper">
           <div id="message" class="message"></div>
           <div id="message-game-info" class="message-game-info"></div>
@@ -79,22 +50,23 @@
         <div class="main">
 
 
-          <div class="player-menu">
-            <button id="play-without-signin" class="btn play-without-signin btn-primary shadow-lg" type="button" name="button">Play Without Sign In</button>
-            <button id="play-against-ai" class="btn play-against-ai btn-primary shadow-lg" type="button" name="button">Play Against AI</button>
-            <button id="easy" class="btn play-without-signin btn-primary shadow-lg" type="button" name="button">Easy Peasy</button>
-            <button id="hard" class="btn play-against-ai btn-primary shadow-lg" type="button" name="button">Impossible</button>
+          <div id="player-menu" class="player-menu">
+            <button id="back-button" class="btn btn-outline-light back shadow-sm"> Back </button>
+            <button id="multiplayer" class="btn btn-outline-light shadow-sm" type="button" name="button">Multiplayer</button>
+            <button id="play-against-ai" class="btn btn-outline-light shadow-sm" type="button" name="button">Play Against AI</button>
+            <button id="easy" class="btn btn-outline-light shadow-sm" type="button" name="button">Easy Peasy</button>
+            <button id="hard" class="btn  btn-outline-light shadow-sm" type="button" name="button">Impossible</button>
           </div>
 
-          <div id="game-board" class="game-board"></div>
+          <div id="game-board" class="game-board shadow-lg"></div>
 
         </div>
 <br>
-<br>
-        <button id="create-game" class="btn game-btn" >▶️ Click for a New Game</button>
-        <button id="reset-button" class="btn game-btn">▶️ Restart</button>
-        <button id="back-button" class="btn game-btn">Go Back to Menu</button>
-
+      <div class="options-btn-group">
+        <button id="create-game" class="btn btn-outline-light" >Click for a New Game</button>
+        <button id="reset-button" class="btn btn-outline-light">Restart</button>
+        <button id="back-to-menu" class="btn btn-outline-light">Go Back to Menu</button>
+      </div>
 
 
         <!-- Sign Up Modal -->
@@ -212,8 +184,8 @@
             </div>
           </div>
         </div>
-        <footer>
+        <div class="footer">
           <p><em> m. ege ercan © 2019</em></p>
-        </footer>
+        </div>
     </body>
 </html>

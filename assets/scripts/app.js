@@ -10,7 +10,7 @@ const gameLogic = require('./game/game-logic.js')
 // on the page that are not supposed to appear. That's why they are seperated.
 $('#account-wrapper').hide()
 $('#create-game').hide()
-$('#reset-button, #easy, #hard, #back-button').hide()
+$('#reset-button, #easy, #hard, #back-button, #back-to-menu').hide()
 $('#redisplay-game').on('click', gameEvents.onRedisplayGame).hide()
 $('#get-games').on('click', gameEvents.onGetGames).hide()
 
@@ -24,23 +24,28 @@ $(() => {
   $('#sign-out').on('click', accountEvents.onSignOut)
   $('#show-game').on('submit', gameEvents.onShowGame)
   $('#join-game').on('submit', multiPlayer.onJoinGame)
-  $('#back-button').on('click', gameEvents.showMenu)
+  $('#back-button, #back-to-menu').on('click', gameEvents.showMenu)
 
-  $('#play-without-signin, #play-against-ai').on('click', (event) => {
-    if (event.target.id === 'play-without-signin') {
+  $('#multiplayer, #play-against-ai').on('click', (event) => {
+    if (event.target.id === 'multiplayer') {
       gameLogic.setGame('regular', false)
+      $('#back-to-menu, #reset-button').show()
+      $('#message-game').html('<p>X Starts</p>')
+
       $('#reset-button').on('click', () => {
         gameLogic.setGame('regular', false)
+        $('#message-game').html('<p>X Starts</p>')
       })
     } else {
       gameLogic.setGame('ai', false)
+      $('#back-button, #reset-button').show()
       $('#reset-button').on('click', () => {
+        $('#message-game').html('<p>Human Starts</p>')
         gameLogic.setGame('ai', false)
       })
     }
 
-    $('#play-without-signin, #play-against-ai').hide()
-    $('#back-button, #reset-button').show()
+    $('#multiplayer, #play-against-ai').hide()
   })
 
   // This button sends update request to api. Its reason is explained in
@@ -60,6 +65,7 @@ $(() => {
   // So the games' data would be ready
   $('#past-games-button').on('click', () => {
     $('#get-games').trigger('click')
+    $('#authCollapsible').collapse('hide')
   })
 
   // Once modals are closed specified below, clear the form fields.

@@ -51,7 +51,8 @@ const onSignInSuccess = (response) => {
   $('#pastGamesHead').text('Past Games of ' + store.user.email)
   // Fetch user's past games in the Past Games Modal
   $('#get-games').trigger('click')
-  $('#play-without-signin').hide()
+  $('#multiplayer').hide()
+  $('#authCollapsible').collapse('hide')
 }
 
 const onSignInFailure = () => {
@@ -73,6 +74,7 @@ const onChangePWSuccess = () => {
   $('#changepw').trigger('reset')
   // Close the modal after one second
   setTimeout(() => { $('.close').trigger('click') }, 1000)
+  $('#authCollapsible').collapse('hide')
 }
 
 const onChangePWFailure = () => {
@@ -92,7 +94,7 @@ const onSignOutSuccess = (response) => {
   $('#message').html('<p>Sign out successful.</p>')
   setTimeout(() => { $('#message >p').fadeOut(500) }, 2000)
   // Set game board off and hide game related buttons, clean message fields
-  $('#game-board').html('')
+  $('#game-board, #user-info').html('')
   $('#create-game').hide()
   $('#reset-button').hide()
   $('#message-game, #message-game-info').html('')
@@ -100,6 +102,7 @@ const onSignOutSuccess = (response) => {
   // Change account corner to sign-in sign-up corner
   $('.account-wrapper').css('visibility', 'hidden').hide()
   $('.sign-in-wrapper').fadeIn(200)
+  $('#authCollapsible').collapse('hide')
 }
 
 const onSignOutFailure = (response) => {

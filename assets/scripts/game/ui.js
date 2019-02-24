@@ -5,7 +5,6 @@ const store = require('./../store.js')
 // Application Logic UI Starts Here
 // Set board after clicking on Start button
 const setBoard = function () {
-  $('#message-game').html('<p>X Starts</p>')
   $('#game-board').html(`
     <div class="row">
       <div id="0" class="box" over="false"></div>
@@ -39,14 +38,23 @@ const putO = function (id) {
 }
 
 // When there is winner
-const onWinner = function (winner, track) {
-  // Announce winner
-  $('#message-game').html('<p>Winner is ' + winner.toUpperCase() + '</p>')
-  // Turn off event handler on boxes
-  $('.box').off('click')
-  // Adjust player message
-  $('#message-game-info').html(`<p>Game ID: ${store.game.id}</p>`)
-
+const onWinner = function (winner, track, isAI) {
+  if (!isAI) {
+    // Announce winner
+    $('#message-game').html('<p>Winner is ' + winner.toUpperCase() + '</p>')
+    // Turn off event handler on boxes
+    $('.box').off('click')
+    // Adjust player message
+    $('#message-game-info').html(`<p>Game ID: ${store.game.id}</p>`)
+  } else {
+    if (winner === 'o') {
+      $('#message-game').html('<p>Winner is Artificial Intelligence</p>')
+    } else {
+      $('#message-game').html('<p>Winner is Human Intelligence</p>')
+    }
+    $('.box').off('click')
+    $('#message-game-info').html(`<p>Game: Human vs. AI</p>`)
+  }
   const winnerTrack = track
   switch (winnerTrack) {
     case 'track0':
@@ -77,10 +85,15 @@ const onWinner = function (winner, track) {
 }
 
 // When it's a tie announce it, adjust player message, turn off btn eventhandler
-const onDraw = function () {
-  $('#message-game').html('<p>It\'s a Tie!!</p>')
-  $('#message-game-info').html(`<p>Game ID: ${store.game.id}</p>`)
-  $('.box').off('click')
+const onDraw = function (isAI) {
+  if (!isAI) {
+    $('#message-game').html('<p>> DRAW!!</p>')
+    $('#message-game-info').html(`<p>Game ID: ${store.game.id}</p>`)
+    $('.box').off('click')
+  } else {
+    $('#message-game').html('<p>> DRAW...</p>')
+    $('.box').off('click')
+  }
 }
 
 // Warn player if a filled cell is clicked

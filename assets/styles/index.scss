@@ -28,28 +28,39 @@ p,  {
   font-size: 16;
 }
 
+html {
+
+}
+
 body {
   background-color: $body-bg-color;
   font-family: 'Roboto Mono', monospace;
+  flex-direction: column;
   height: 100vh;
   padding-bottom: 60px;
+  max-width: 700px;
+  margin: 0 auto;
 
-  // &:active {
-  //   background-color: #4952d4;
-  // }
+  .navbar {
+    border-radius: 0 0 10px 10px;
+    background-color: $header-background-color;
+  }
+
+  .footer {
+    background-color: $header-background-color;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    font-size: 10px;
+    height: 35px;
+    justify-content: center;
+    padding-top: 5px;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    max-width: 700px;
+  }
 }
 
-footer {
-  background-color: $header-background-color;
-  bottom: 0;
-  display: flex;
-  font-size: 10px;
-  height: 35px;
-  justify-content: center;
-  padding-top: 5px;
-  position: fixed;
-  width: 100%;
-}
 
 
 .message-wrapper {
@@ -73,16 +84,14 @@ footer {
 .main {
   align-items: center;
   display: flex;
-  height: 300px;
+  width: 100%;
   justify-content: center;
-  margin-top: 10px;
+  margin: 0;
 }
 
-// .player-menu,
 .game-board {
   background-color: $game-board-bg-color;
   height: 300px;
-  transform: translate(-150px);
   width: 300px;
 }
 
@@ -91,17 +100,25 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transform: translate(150px);
-  width: 280px;
-  z-index: 1;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  z-index: 2;
 
-  .play-without-signin {
-
+  .back {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
-
-  .play-against-ai {
-
+  .btn {
+    margin: 10px;
   }
+}
+
+.options-btn-group {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .row {
@@ -121,6 +138,7 @@ footer {
   justify-content: center;
   transition: .4s;
   width: 100px;
+  z-index: 3;
 
   .p {
     height: 10px;
@@ -143,10 +161,6 @@ p,  {
 }
 
 .btn {
-  background-color: $button-color;
-  border-color: $button-border-color;
-  color: $button-font-color;
-  cursor: pointer;
   font-size: 12px;
   height: 30px;
 
@@ -156,92 +170,61 @@ p,  {
   }
 }
 
-table {
-  // font-size: 16px;
+.logo {
+  border-radius: 5px;
+  height: 50px;
+  width: auto;
 }
 
-header {
-  background-color: $header-background-color;
+.account-wrapper {
+  align-items: flex-end;
   display: flex;
-  height: 110px;
-  justify-content: space-between;
-  margin-bottom: 30px;
-  padding: 10px 10px 0;
-  width: 100vw;
+  flex-direction: column;
 
-  .logo {
-    border-radius: 5px;
-    height: 50px;
-    width: auto;
-  }
-
-  .account-wrapper,
-  .auth-wrapper {
-    align-items: flex-end;
-    display: flex;
-    flex-direction: column;
-    height: 70px;
-    justify-content: space-between;
-  }
-
-
-  .sign-in-wrapper {
-    align-items: flex-end;
-    display: flex;
-    flex-direction: column;
-    height: 70px;
-    justify-content: space-between;
-
-    .user-info {
-      color: $button-font-color;
-      font-size: 16px;
-      margin-bottom: 0;
-      padding: 5px;
-    }
-
-    .form-control {
-      font-size: 80%;
-    }
-
-    .sign-up-container {
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .sign-up-button {
-      background-color: $button-signup-color;
-      color: $button-font-color;
-    }
-
-    .sign-up-button-div {
-      display: flex;
-      justify-content: flex-end;
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    .sign-out-button {
-      border-color: $caution-color;
-      color: $caution-color;
-      margin-top: 5px;
-
-      &:hover {
-        background-color: $hover-caution-color;
-        color: $button-color;
-      }
-    }
-  }
-
-  .account-wrapper {
-    visibility: hidden;
+  button {
+    margin-top: 10px;
   }
 }
 
-.changepw-wrapper {
-  border: 1px solid $container-border-color;
-  height: 310px;
-  padding: 10px;
-  width: 310px;
+.navbar-collapse {
+  justify-content: flex-end;
+}
+
+.sign-in-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    input {
+      border: 0;
+      border-bottom: 1px solid;
+      border-radius: 0;
+      font-size: 12px;
+    }
+  }
+  .btn-group {
+    margin-top: 10px;
+  }
+}
+
+.account-wrapper {
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  .btn {
+    background-color: none;
+    border: 0;
+    border-bottom: 2px solid;
+    color: white;
+  }
 }
 
 .success {
@@ -318,7 +301,7 @@ a {
 
 }
 
-@media (max-width: 270px) {
+@media (max-width: 310px) {
   .header {
     height: 230px;
   }
@@ -329,13 +312,35 @@ a {
   }
 
   .game-board {
-    height: 280px;
-    width: 280px;
+    height: 210px;
+    width: 210px;
   }
 
   .box {
-    font-size: $square-dimensions * .8;
+    font-size: $square-dimensions * .5;
     height: 70px;
     width: 70px;
+  }
+}
+
+@media (max-width: 230px) {
+  .header {
+    height: 230px;
+  }
+
+  .sign-in-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .game-board {
+    height: 180px;
+    width: 180px;
+  }
+
+  .box {
+    font-size: $square-dimensions * .45;
+    height: 60px;
+    width: 60px;
   }
 }
