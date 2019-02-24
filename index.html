@@ -51,7 +51,6 @@
 
         <div class="main">
 
-
           <div id="player-menu" class="player-menu">
             <button id="back-button" class="btn btn-outline-light back shadow-sm"> Back </button>
             <button id="multiplayer" class="btn btn-outline-light shadow-sm" type="button" name="button">Multiplayer</button>
@@ -61,6 +60,20 @@
             <button id="hard" class="btn  btn-outline-light shadow-sm" type="button" name="button">Impossible</button>
           </div>
 
+          <div class="thinking">
+            <h3 style="color: black;">A.I. is Running</h3>
+            <div>
+              <div class="spinner-grow text-dark" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+              <div class="spinner-grow text-dark" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+              <div class="spinner-grow text-dark" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
           <div id="game-board" class="game-board shadow-lg"></div>
 
         </div>
@@ -140,7 +153,7 @@
 
         <!-- Game History Modal -->
         <div class="modal fade" id="gameHistoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h3 class="modal-title" id="pastGamesHead"></h3>
@@ -157,14 +170,16 @@
                   <input id="game-id" placeholder="Go past game by ID">
                   <button type="submit" class="btn btn-primary">Bring Up</button>
                 </form>
-        <hr>
+                <!-- TO DO: JOIN GAME -->
+        <!-- <hr>
                 <form id="join-game">
                   <input id="join-id" placeholder="Join game by ID">
                   <button id="join-game-button" class="btn btn-primary" type="submit">Join</button>
-                </form>
+                </form> -->
        <hr>
                 <div id="message-data" class="message-data"></div>
-                <button id="redisplay-game" class="redisplay-button btn btn-primary"><a href="#page-top">Redisplay This Game</a></button>
+                <!-- TO DO: REPAIR REDISPLAY -->
+                <!-- <button id="redisplay-game" class="redisplay-button btn btn-primary"><a href="#page-top">Redisplay This Game</a></button> -->
        <hr>
                   <table class="table table-md">
                     <thead>

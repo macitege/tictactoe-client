@@ -72,8 +72,6 @@ body {
   color: tomato;
 }
 
-
-
 .message-wrapper {
   align-items: space-around;
   display: flex;
@@ -107,7 +105,36 @@ body {
   width: 400px;
   margin-top: 10px;
   display: flex;
+}
 
+@keyframes swell {
+  0% {
+    background-color: rgba(40, 175, 176, .8);
+  }
+
+  50% {
+    background-color: rgba(40, 175, 176, .6);
+  }
+
+  100% {
+    background-color: rgba(40, 175, 176, .8);
+  }
+}
+
+.thinking {
+  animation: swell 1.5s infinite;
+  align-items: center;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  z-index: 5;
+  background-color: rgba(40, 175, 176, .8);
 }
 
 .player-menu {
@@ -115,10 +142,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   position: absolute;
-  z-index: 2;
+  z-index: 3;
 
   .back {
     position: absolute;
@@ -293,32 +320,6 @@ a {
   color: $button-font-color;
 }
 
-// @media screen and (max-width: 770px) {
-//   h1 {
-//     font-size: 36px;
-//   }
-//
-//   .logo-wrapper {
-//     display: flex;
-//     justify-content: center;
-//   }
-//
-//   .auth-wrapper {
-//     align-self: center;
-//     display: flex;
-//     justify-content: center;
-//     position: relative;
-//     right: 1%;
-//     top: -80px;
-//   }
-//
-//   .account-wrapper {
-//     display: flex;
-//     justify-content: center;
-//   }
-//
-// }
-
 @media screen and (max-width: 410px) {
   .message > p {
     font-size: 12px;
@@ -343,6 +344,10 @@ a {
     font-size: $square-dimensions * .5;
     height: calc(280px/3);
     width: calc(280px/3);
+
+    p {
+      transform: translateY(6px);
+    }
   }
 
   .message {
@@ -380,6 +385,10 @@ a {
     font-size: $square-dimensions * .45;
     height: 60px;
     width: 60px;
+
+    p {
+      transform: translateY(0);
+    }
   }
 }
 

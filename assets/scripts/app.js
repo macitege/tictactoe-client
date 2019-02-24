@@ -7,7 +7,7 @@ const multiPlayer = require('./game/multiplayer-events.js')
 const gameLogic = require('./game/game-logic.js')
 // These jQuerys must happen before everything to ensure nothing will appear
 // on the page that are not supposed to appear. That's why they are seperated.
-$('#account-wrapper').hide()
+$('#account-wrapper, .thinking').hide()
 $('#create-game').hide()
 $('#reset-button, #easy, #hard, #back-button, #back-to-menu').hide()
 $('#redisplay-game').on('click', gameEvents.onRedisplayGame).hide()

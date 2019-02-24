@@ -44,10 +44,12 @@ const makeMove = function (event, level) {
     if (!cells.some(isVacant)) {
       whoWon(id)
     } else {
+      $('.thinking').show()
       setTimeout(() => {
+        $('.thinking').fadeOut(200)
         botPlayEasy()
         whoWon(id)
-      }, 1000)
+      }, 2000)
     }
   } else {
     cells[id] = 'x'
@@ -56,10 +58,12 @@ const makeMove = function (event, level) {
     if (!cells.some(isVacant)) {
       whoWon(id)
     } else {
+      $('.thinking').show()
       setTimeout(() => {
+        $('.thinking').fadeOut(200)
         botPlayHard()
         whoWon(id)
-      }, 1000)
+      }, 2000)
     }
   }
 }
