@@ -159,6 +159,9 @@ const onCreateGameSuccess = (response) => {
   store.game = response.game
   // Show current game id to the player
   $('#message-game-info').html(`<p>Playing... Current Game ID: ${store.game.id}</p>`)
+  $('#message-game').html('<p>X Starts</p>')
+  $('#player-menu').hide()
+  $('#back-to-menu, #reset-button').show()
 }
 
 const onCreateGameFailure = () => {

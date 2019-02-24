@@ -17,7 +17,7 @@ const onGetGames = (event) => {
 // Create a game on api
 const onCreateGame = (event) => {
   event.preventDefault()
-  $('#message-game').html('<p>X Starts</p>')
+
   const token = store.user.token
   api.createGame(token)
     // stores the game, makes reset button appear
@@ -60,7 +60,6 @@ const onRedisplayGame = (id) => {
   $('#message-game-info').html('<p>Game ID "' + store.showGame.id + '" | Redisplay</p>')
   $('#message-game, #message').text('')
   $('#create-game').text('Play a New Game')
-  $('#reset-button').text('Play a New Game')
 }
 
 /* This function is being triggered by a hidden button named 'send-to-api'
@@ -102,10 +101,18 @@ const onMove = (event, id, isGameOver) => {
 }
 
 const showMenu = () => {
-  $('#game-board').html('')
-  $('#multiplayer, #play-against-ai').show()
-  $('#back-button, #back-to-menu, #reset-button, #easy, #hard').hide()
-  $('#message, #message-game-info, #message-game').text('')
+  if (store.user) {
+    $('#game-board').html('')
+    $('#player-menu, #create-game, #play-against-ai').show()
+    $('#back-button, #back-to-menu, #reset-button, #easy, #hard').hide()
+    $('#message, #message-game-info, #message-game').text('')
+    $('#reset-button').off('click')
+  } else {
+    $('#game-board').html('')
+    $('#player-menu, #multiplayer, #play-against-ai').show()
+    $('#back-button, #back-to-menu, #reset-button, #easy, #hard').hide()
+    $('#message, #message-game-info, #message-game').text('')
+  }
 }
 
 module.exports = {

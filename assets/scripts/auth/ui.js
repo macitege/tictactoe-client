@@ -45,14 +45,13 @@ const onSignInSuccess = (response) => {
   $('#sign-in-password').css('border-color', '#9e9e9e')
   // Show start button for game
   $('#create-game').show()
-  // Change the warning "Please sign in" on the game board to "Click Start"
-  $('#game-board').html('Have Fun!!!')
   // Place users name in the Past Games Modal
   $('#pastGamesHead').text('Past Games of ' + store.user.email)
   // Fetch user's past games in the Past Games Modal
   $('#get-games').trigger('click')
   $('#multiplayer').hide()
   $('#authCollapsible').collapse('hide')
+  $('#back-to-menu').trigger('click')
 }
 
 const onSignInFailure = () => {
@@ -98,11 +97,12 @@ const onSignOutSuccess = (response) => {
   $('#create-game').hide()
   $('#reset-button').hide()
   $('#message-game, #message-game-info').html('')
-  $('#game-board').html('<p>Please sign in to play.</p>')
   // Change account corner to sign-in sign-up corner
   $('.account-wrapper').css('visibility', 'hidden').hide()
   $('.sign-in-wrapper').fadeIn(200)
   $('#authCollapsible').collapse('hide')
+  $('#player-menu, #multiplayer, #play-against-ai').show()
+  $('#reset-button, #easy, #hard, #back-button, #back-to-menu').hide()
 }
 
 const onSignOutFailure = (response) => {

@@ -2,7 +2,6 @@
 
 const ui = require('./ui')
 const bot = require('./bot')
-const gameEvents = require('./events.js')
 // Array  that represents cells on the game board
 let cells = ['', '', '', '', '', '', '', '', '']
 // Variable that holds last players info, so that engine can check who was the last player
@@ -10,7 +9,7 @@ let lastPlayer = null
 
 // For setting or resetting the game board
 const setGame = function (type, signIn, level) {
-  if (type === 'ai' && signIn === false) {
+  if (type === 'ai') {
     bot.resetBoardHistory()
     ui.setBoard()
     if (level === 'hard') {
@@ -28,7 +27,6 @@ const setGame = function (type, signIn, level) {
     lastPlayer = null
     ui.setBoard()
     $('.box').on('click', makeMove)
-    $('#reset-button').on('click', gameEvents.onCreateGame)
   }
 }
 

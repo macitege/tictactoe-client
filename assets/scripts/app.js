@@ -14,7 +14,10 @@ $('#redisplay-game').on('click', gameEvents.onRedisplayGame).hide()
 $('#get-games').on('click', gameEvents.onGetGames).hide()
 $(() => {
   // Start game
-  $('#create-game').on('click', gameEvents.onCreateGame)
+  $('#create-game').on('click', (event) => {
+    gameEvents.onCreateGame(event)
+    $('#reset-button').on('click', gameEvents.onCreateGame)
+  })
   // reset button creates a new game and refreshes the gameboard
   $('#sign-up').on('submit', accountEvents.onSignUp)
   $('#sign-in').on('submit', accountEvents.onSignIn)
@@ -29,12 +32,14 @@ $(() => {
       gameLogic.setGame('regular', false)
       $('#back-to-menu, #reset-button').show()
       $('#message-game').html('<p>X Starts</p>')
-
+      $('#reset-button').off('click')
       $('#reset-button').on('click', () => {
         gameLogic.setGame('regular', false)
         $('#message-game').html('<p>X Starts</p>')
       })
     } else {
+      $('#create-game').hide()
+      $('#reset-button').off('click')
       $('#easy, #hard').show().on('click', (event) => {
         if (event.target.id === 'hard') {
           $('#easy, #hard, #back-button').hide()
@@ -82,6 +87,7 @@ $(() => {
   $('#past-games-button').on('click', () => {
     $('#get-games').trigger('click')
     $('#authCollapsible').collapse('hide')
+    $('#back-to-menu').trigger('click')
   })
 
   // Once modals are closed specified below, clear the form fields.
