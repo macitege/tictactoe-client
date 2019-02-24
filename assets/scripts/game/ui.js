@@ -39,13 +39,43 @@ const putO = function (id) {
 
 // When there is winner
 const onWinner = function (winner, track, isAI) {
+  const winnerTrack = track
+  switch (winnerTrack) {
+    case 'track0':
+      $('#0, #1, #2').css('background-color', 'rgba(0, 230, 0, .4)')
+      break
+    case 'track1':
+      $('#3, #4, #5').css('background-color', 'rgba(0, 230, 0, .4)')
+      break
+    case 'track2':
+      $('#6, #7, #8').css('background-color', 'rgba(0, 230, 0, .4)')
+      break
+    case 'track3':
+      $('#0, #3, #6').css('background-color', 'rgba(0, 230, 0, .4)')
+      break
+    case 'track4':
+      $('#1, #4, #7').css('background-color', 'rgba(0, 230, 0, .4)')
+      break
+    case 'track5':
+      $('#2, #5, #8').css('background-color', 'rgba(0, 230, 0, .4)')
+      break
+    case 'track6':
+      $('#0, #4, #8').css('background-color', 'rgba(0, 230, 0, .4)')
+      break
+    case 'track7':
+      $('#2, #4, #6').css('background-color', 'rgba(0, 230, 0, .4)')
+      break
+  }
+
   if (!isAI) {
     // Announce winner
     $('#message-game').html('<p>Winner is ' + winner.toUpperCase() + '</p>')
     // Turn off event handler on boxes
     $('.box').off('click')
     // Adjust player message
-    $('#message-game-info').html(`<p>Game ID: ${store.game.id}</p>`)
+    if (store.game) {
+      $('#message-game-info').html(`<p>Game ID: ${store.game.id}</p>`)
+    }
   } else {
     if (winner === 'o') {
       $('#message-game').html('<p>Winner is Artificial Intelligence</p>')
@@ -55,44 +85,19 @@ const onWinner = function (winner, track, isAI) {
     $('.box').off('click')
     $('#message-game-info').html(`<p>Game: Human vs. AI</p>`)
   }
-  const winnerTrack = track
-  switch (winnerTrack) {
-    case 'track0':
-      $('#0, #1, #2').css('background-color', '#6b779b')
-      break
-    case 'track1':
-      $('#3, #4, #5').css('background-color', '#6b779b')
-      break
-    case 'track2':
-      $('#6, #7, #8').css('background-color', '#6b779b')
-      break
-    case 'track3':
-      $('#0, #3, #6').css('background-color', '#6b779b')
-      break
-    case 'track4':
-      $('#1, #4, #7').css('background-color', '#6b779b')
-      break
-    case 'track5':
-      $('#2, #5, #8').css('background-color', '#6b779b')
-      break
-    case 'track6':
-      $('#0, #4, #8').css('background-color', '#6b779b')
-      break
-    case 'track7':
-      $('#2, #4, #6').css('background-color', '#6b779b')
-      break
-  }
 }
 
 // When it's a tie announce it, adjust player message, turn off btn eventhandler
 const onDraw = function (isAI) {
   if (!isAI) {
     $('#message-game').html('<p>> DRAW!!</p>')
-    $('#message-game-info').html(`<p>Game ID: ${store.game.id}</p>`)
-    $('.box').off('click')
+    if (store.game) {
+      $('#message-game-info').html(`<p>Game ID: ${store.game.id}</p>`)
+    }
+    $('.box').off('click').css('background-color', 'rgba(230, 0, 0, .4)')
   } else {
     $('#message-game').html('<p>> DRAW...</p>')
-    $('.box').off('click')
+    $('.box').off('click').css('background-color', 'rgba(230, 0, 0, .4)')
   }
 }
 

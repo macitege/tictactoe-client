@@ -74,28 +74,31 @@ by 'whoWon' function. */
 const onMove = (event, id, isGameOver) => {
   event.preventDefault()
   const cellID = id
-  const gameID = store.game.id
-  const token = store.user.token
-  // pull the text inside the cell by id passed by former function 'whoWon'
-  const val = $('#' + cellID).val().toString()
-  const isOver = isGameOver
-  // create data object to sent the api
-  const data = {
-    'game': {
-      'cell': {
-        'index': cellID,
-        'value': val
-      },
-      'over': isOver
+
+  if (store.game && store.user) {
+    const gameID = store.game.id
+    const token = store.user.token
+    // pull the text inside the cell by id passed by former function 'whoWon'
+    const val = $('#' + cellID).val().toString()
+    const isOver = isGameOver
+    // create data object to sent the api
+    const data = {
+      'game': {
+        'cell': {
+          'index': cellID,
+          'value': val
+        },
+        'over': isOver
+      }
     }
+    // api request
+    api.updateGame(token, gameID, data)
+      .then((response) => {
+        const updatedVal = response.game.cells[cellID]
+        ui.onUpdateGameSuccess(cellID, updatedVal)
+      })
+      .catch(ui.onUpdateGameFailure)
   }
-  // api request
-  api.updateGame(token, gameID, data)
-    .then((response) => {
-      const updatedVal = response.game.cells[cellID]
-      ui.onUpdateGameSuccess(cellID, updatedVal)
-    })
-    .catch(ui.onUpdateGameFailure)
 }
 
 const showMenu = () => {

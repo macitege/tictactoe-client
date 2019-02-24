@@ -81,7 +81,7 @@ const whoWon = function (id) {
     const winner = winnerTracks[track][0][0]
     // if there is a match
     if (trackValue === 'xxx' || trackValue === 'ooo') {
-      ui.onWinner(winner, track)
+      ui.onWinner(winner, track, false)
       isGameOver = true
       break
       /* If the last move was the winner move, break would end the condition here.
