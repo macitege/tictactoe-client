@@ -2,8 +2,8 @@
 
 $container-border-color: #5e5e5e;
 $container-bg-color: #367bd4;
-$body-bg-color: #163154;
-$box-border-color: #fff;
+$body-bg-color: rgba(10, 37, 46, 1);
+$box-border-color: rgba(244, 211, 94, 1);
 $square-dimensions: 100px;
 $caution-color: #f44;
 $hover-caution-color: #f77;
@@ -13,9 +13,9 @@ $button-border-color: #9e9e9e;
 $button-font-color: #ddd;
 $button-signup-color: #4952d4;
 $shadow-color: #234f87;
-$header-background-color: #234f87;
-$box-hover-color: #234f87;
-$game-board-bg-color: #367bd4;
+$header-background-color: rgba(40, 175, 176, 1);
+$box-hover-color: rgba(238, 150, 75, 1);
+$game-board-bg-color: rgba(217, 137, 69, 1);
 $player-menu-bg-color: rgba(35, 79, 135, .9);
 
 h1,
@@ -44,6 +44,8 @@ body {
   .navbar {
     border-radius: 0 0 10px 10px;
     background-color: $header-background-color;
+    text-shadow: 1px 1px 1px #19647E;
+    z-index: 100;
   }
 
   .footer {
@@ -58,6 +60,7 @@ body {
     position: fixed;
     width: 100%;
     max-width: 700px;
+    z-index: 100;
   }
 }
 
@@ -148,18 +151,17 @@ body {
   color: $box-border-color;
   cursor: pointer;
   display: flex;
-  font-family: fantasy;
-  font-size: 70px;
+  font-family: 'Indie Flower', fantasy;
+  font-size: 80px;
   height: 100px;
   justify-content: center;
   transition: .1s;
   width: 100px;
   z-index: 3;
 
-  .p {
-    height: 10px;
-    margin: auto;
-    width: 10px;
+  p {
+    transform: translateY(-10px);
+    text-shadow: 1px 1px 1px #AE6E37;
   }
 
   &:hover {
@@ -190,6 +192,12 @@ p,  {
   border-radius: 5px;
   height: 50px;
   width: auto;
+  transform: translateY(-10px)
+}
+
+.logo-span {
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 50px;
 }
 
 .account-wrapper {
@@ -285,42 +293,35 @@ a {
   color: $button-font-color;
 }
 
-@media screen and (max-width: 770px) {
-  h1 {
-    font-size: 36px;
-  }
-
-  .header {
-    align-items: center;
-    flex-direction: column;
-    height: 160px;
-    justify-content: flex-start;
-  }
-
-  .logo-wrapper {
-    display: flex;
-    justify-content: center;
-  }
-
-  .auth-wrapper {
-    align-self: center;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    right: 1%;
-    top: -80px;
-  }
-
-  .account-wrapper {
-    display: flex;
-    justify-content: center;
-  }
-
-}
+// @media screen and (max-width: 770px) {
+//   h1 {
+//     font-size: 36px;
+//   }
+//
+//   .logo-wrapper {
+//     display: flex;
+//     justify-content: center;
+//   }
+//
+//   .auth-wrapper {
+//     align-self: center;
+//     display: flex;
+//     justify-content: center;
+//     position: relative;
+//     right: 1%;
+//     top: -80px;
+//   }
+//
+//   .account-wrapper {
+//     display: flex;
+//     justify-content: center;
+//   }
+//
+// }
 
 @media screen and (max-width: 330px) {
-  .header {
-    height: 230px;
+  .message > p {
+    font-size: 12px;
   }
 
   .sign-in-wrapper {
@@ -328,15 +329,25 @@ a {
     flex-direction: column;
   }
 
+  .logo-span{
+    font-size: 30px;
+  }
+
+  .player-menu,
   .game-board {
-    height: 210px;
-    width: 210px;
+    height: 250px;
+    width: 250px;
   }
 
   .box {
     font-size: $square-dimensions * .5;
-    height: 70px;
-    width: 70px;
+    height: calc(250px/3);
+    width: calc(250px/3);
+  }
+
+  .message {
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -345,11 +356,21 @@ a {
     height: 230px;
   }
 
+  .message {
+    margin: 0;
+    padding: 0;
+  }
+
+  .logo-span{
+    font-size: 30px;
+  }
+
   .sign-in-wrapper {
     display: flex;
     flex-direction: column;
   }
 
+  .player-menu,
   .game-board {
     height: 180px;
     width: 180px;
