@@ -100,8 +100,9 @@ const onMove = (event, id, isGameOver) => {
 
 const showMenu = () => {
   $('#game-board').html('')
-  $('#play-without-signin, #play-against-ai').show()
+  $('#multiplayer, #play-against-ai').show()
   $('#back-button, #reset-button, #easy, #hard').hide()
+  $('#message, #message-game-info, #message-game').text('')
 }
 
 module.exports = {

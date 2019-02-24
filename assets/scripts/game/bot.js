@@ -5,6 +5,9 @@ const ui = require('./ui')
 // Array  that represents cells on the game board
 let cells = ['', '', '', '', '', '', '', '', '']
 const resetBoardHistory = () => { cells = ['', '', '', '', '', '', '', '', ''] }
+const isVacant = (cell) => {
+  return cell === ''
+}
 // Variable that holds last players info, so that engine can check who was the last player
 
 const winnerTracks = {
@@ -27,25 +30,30 @@ const makeMove = function (event, level) {
   const id = event.target.id
   // Condition to check if the box is empty and who wast the last player?
   if (cells[id] !== '') {
-    console.log(cells)
-    console.log(id)
-    console.log(cells)
     ui.alertPlayer()
     $('.box').on('click', makeMove)
   } else if (level === 'easy') {
     cells[id] = 'x'
     ui.putX(id)
-    setTimeout(() => {
-      botPlayEasy()
+    if (!cells.some(isVacant)) {
       whoWon(id)
-    }, 1000)
+    } else {
+      setTimeout(() => {
+        botPlayEasy()
+        whoWon(id)
+      }, 1000)
+    }
   } else {
     cells[id] = 'x'
     ui.putX(id)
-    setTimeout(() => {
-      botPlayHard()
+    if (!cells.some(isVacant)) {
       whoWon(id)
-    }, 1000)
+    } else {
+      setTimeout(() => {
+        botPlayHard()
+        whoWon(id)
+      }, 1000)
+    }
   }
 }
 
@@ -58,7 +66,7 @@ const botPlayHard = () => {
   }
   // IF THERE IS TWO O IN SAME ROW, FILL THIRD CELL
   for (let i = 0; i < 8; i++) {
-    if (shouldPlay) {
+    if (shouldPlay && cells.some(isVacant)) {
       if (tracksArr[i] === 'oo') {
         const theTrack = winnerTracks['track' + i]
         for (let j = 0; j < 3; j++) {
@@ -73,7 +81,7 @@ const botPlayHard = () => {
   }
   // IF THERE IS TWO X IN A ROW, FILL THIRD ROW
   for (let i = 0; i < 8; i++) {
-    if (shouldPlay) {
+    if (shouldPlay && cells.some(isVacant)) {
       if (tracksArr[i] === 'xx') {
         const theTrack = winnerTracks['track' + i]
         for (let j = 0; j < 3; j++) {
@@ -93,8 +101,7 @@ const botPlayHard = () => {
     shouldPlay = false
   }
   // IF MIDDLE CELL IS OCCUPIED PUT ON ANY OF VACANT CORNER CELLS
-  if (cells[4] !== '' && shouldPlay) {
-    shouldPlay = false
+  if (cells[4] !== '' && shouldPlay && cells.some(isVacant)) {
     const possibleCells = [cells[0], cells[2], cells[6], cells[8]]
     const vacantCellIndex = []
     for (let i = 0; i < 4; i++) {
@@ -107,23 +114,29 @@ const botPlayHard = () => {
       case 0:
         cells[0] = 'o'
         ui.putO(0)
+        shouldPlay = false
         break
       case 1:
         cells[2] = 'o'
         ui.putO(2)
+        shouldPlay = false
         break
       case 2:
         cells[6] = 'o'
         ui.putO(6)
+        shouldPlay = false
         break
       case 3:
         cells[8] = 'o'
         ui.putO(8)
+        shouldPlay = false
         break
+      default:
+        shouldPlay = true
     }
   }
 
-  if (shouldPlay) {
+  if (shouldPlay && cells.some(isVacant)) {
     let randomNum = 0
     const generator = () => {
       randomNum = Math.floor(Math.random() * 9)
@@ -157,7 +170,7 @@ const botPlayEasy = () => {
 
 // Function to find winner
 // (works during the game, when somebody wins, stops the game)
-let isGameOver = false
+
 const whoWon = function (id) {
   // Cell tracks that should contain 3 'x's or 'o's in a row to create winner
   const c = cells
@@ -178,24 +191,17 @@ const whoWon = function (id) {
     const winner = winnerTracks[track][0][0]
     // if there is a match
     if (trackValue === 'xxx' || trackValue === 'ooo') {
-      ui.onWinner(winner, track)
-      isGameOver = true
+      // 3rd parameter show this is a bot game
+      ui.onWinner(winner, track, true)
       break
       /* If the last move was the winner move, break would end the condition here.
       If there was no break keyword, 2nd block would run and overwrite winner
       message in #message area */
     } else if (!cells.includes('')) {
-      ui.onDraw()
-      isGameOver = true
+      // parameter show this is a bot game
+      ui.onDraw(true)
     }
   }
-  // send updates to the api
-  // This hidden button is being used to trigger update process of a game on api
-  // Because circular require is not possible, this file cannot be required by
-  // 'ui.js'. So, this button is created to send a data to 'ui.js' through
-  // 'events.js'. I needed this because I wasn't able to invoke a function Here
-  // from 'ui.js'.
-  $('#send-to-api').trigger('click', [id, isGameOver])
 }
 
 module.exports = {
