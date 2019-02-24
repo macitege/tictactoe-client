@@ -44,7 +44,9 @@ const makeMove = function (event, level) {
     if (!cells.some(isVacant)) {
       whoWon(id)
     } else {
-      $('.thinking').show()
+      if (!isWinner) {
+        $('.thinking').show()
+      }
       setTimeout(() => {
         $('.thinking').fadeOut(200)
         botPlayEasy()
@@ -58,7 +60,9 @@ const makeMove = function (event, level) {
     if (!cells.some(isVacant)) {
       whoWon(id)
     } else {
-      $('.thinking').show()
+      if (!isWinner) {
+        $('.thinking').show()
+      }
       setTimeout(() => {
         $('.thinking').fadeOut(200)
         botPlayHard()
