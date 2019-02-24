@@ -9,20 +9,15 @@ let cells = ['', '', '', '', '', '', '', '', '']
 let lastPlayer = null
 
 // For setting or resetting the game board
-const setGame = function (type, signIn) {
+const setGame = function (type, signIn, level) {
   if (type === 'ai' && signIn === false) {
     bot.resetBoardHistory()
-    $('#easy, #hard').show().on('click', (event) => {
-      if (event.target.id === 'hard') {
-        $('#easy, #hard').hide()
-        ui.setBoard()
-        $('.box').on('click', bot.makeMove)
-      } else {
-        $('#easy, #hard').hide()
-        ui.setBoard()
-        $('.box').on('click', (event, level) => bot.makeMove(event, 'easy'))
-      }
-    })
+    ui.setBoard()
+    if (level === 'hard') {
+      $('.box').on('click', bot.makeMove)
+    } else {
+      $('.box').on('click', (event, level) => bot.makeMove(event, 'easy'))
+    }
   } else if (type === 'regular' && signIn === false) {
     cells = ['', '', '', '', '', '', '', '', '']
     lastPlayer = null

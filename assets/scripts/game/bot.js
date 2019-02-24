@@ -3,11 +3,16 @@
 const ui = require('./ui')
 
 // Array  that represents cells on the game board
+let isWinner = false
 let cells = ['', '', '', '', '', '', '', '', '']
-const resetBoardHistory = () => { cells = ['', '', '', '', '', '', '', '', ''] }
+const resetBoardHistory = () => {
+  isWinner = false
+  cells = ['', '', '', '', '', '', '', '', '']
+}
 const isVacant = (cell) => {
   return cell === ''
 }
+
 // Variable that holds last players info, so that engine can check who was the last player
 
 const winnerTracks = {
@@ -34,7 +39,8 @@ const makeMove = function (event, level) {
     $('.box').on('click', makeMove)
   } else if (level === 'easy') {
     cells[id] = 'x'
-    ui.putX(id)
+    ui.putX(id, true)
+    whoWon(id)
     if (!cells.some(isVacant)) {
       whoWon(id)
     } else {
@@ -45,7 +51,8 @@ const makeMove = function (event, level) {
     }
   } else {
     cells[id] = 'x'
-    ui.putX(id)
+    ui.putX(id, true)
+    whoWon(id)
     if (!cells.some(isVacant)) {
       whoWon(id)
     } else {
@@ -59,113 +66,117 @@ const makeMove = function (event, level) {
 
 // AI BOT
 const botPlayHard = () => {
-  let shouldPlay = true
-  const tracksArr = []
-  for (const track in winnerTracks) {
-    tracksArr.push(winnerTracks[track].map(i => cells[i]).reduce(isSame))
-  }
-  // IF THERE IS TWO O IN SAME ROW, FILL THIRD CELL
-  for (let i = 0; i < 8; i++) {
-    if (shouldPlay && cells.some(isVacant)) {
-      if (tracksArr[i] === 'oo') {
-        const theTrack = winnerTracks['track' + i]
-        for (let j = 0; j < 3; j++) {
-          if (cells[theTrack[j]] === '') {
-            cells[theTrack[j]] = 'o'
-            ui.putO(theTrack[j])
-            shouldPlay = false
+  if (!isWinner) {
+    let shouldPlay = true
+    const tracksArr = []
+    for (const track in winnerTracks) {
+      tracksArr.push(winnerTracks[track].map(i => cells[i]).reduce(isSame))
+    }
+    // IF THERE IS TWO O IN SAME ROW, FILL THIRD CELL
+    for (let i = 0; i < 8; i++) {
+      if (shouldPlay && cells.some(isVacant)) {
+        if (tracksArr[i] === 'oo') {
+          const theTrack = winnerTracks['track' + i]
+          for (let j = 0; j < 3; j++) {
+            if (cells[theTrack[j]] === '') {
+              cells[theTrack[j]] = 'o'
+              ui.putO(theTrack[j], true)
+              shouldPlay = false
+            }
           }
         }
       }
     }
-  }
-  // IF THERE IS TWO X IN A ROW, FILL THIRD ROW
-  for (let i = 0; i < 8; i++) {
-    if (shouldPlay && cells.some(isVacant)) {
-      if (tracksArr[i] === 'xx') {
-        const theTrack = winnerTracks['track' + i]
-        for (let j = 0; j < 3; j++) {
-          if (cells[theTrack[j]] === '') {
-            cells[theTrack[j]] = 'o'
-            ui.putO(theTrack[j])
-            shouldPlay = false
+    // IF THERE IS TWO X IN A ROW, FILL THIRD ROW
+    for (let i = 0; i < 8; i++) {
+      if (shouldPlay && cells.some(isVacant)) {
+        if (tracksArr[i] === 'xx') {
+          const theTrack = winnerTracks['track' + i]
+          for (let j = 0; j < 3; j++) {
+            if (cells[theTrack[j]] === '') {
+              cells[theTrack[j]] = 'o'
+              ui.putO(theTrack[j], true)
+              shouldPlay = false
+            }
           }
         }
       }
     }
-  }
-  // IF MIDDLE CELL IS VACANT PUT O
-  if (cells[4] === '' && shouldPlay) {
-    cells[4] = 'o'
-    ui.putO(4)
-    shouldPlay = false
-  }
-  // IF MIDDLE CELL IS OCCUPIED PUT ON ANY OF VACANT CORNER CELLS
-  if (cells[4] !== '' && shouldPlay && cells.some(isVacant)) {
-    const possibleCells = [cells[0], cells[2], cells[6], cells[8]]
-    const vacantCellIndex = []
-    for (let i = 0; i < 4; i++) {
-      if (possibleCells[i] === '') {
-        vacantCellIndex.push(i)
+    // IF MIDDLE CELL IS VACANT PUT O
+    if (cells[4] === '' && shouldPlay) {
+      cells[4] = 'o'
+      ui.putO(4, true)
+      shouldPlay = false
+    }
+    // IF MIDDLE CELL IS OCCUPIED PUT ON ANY OF VACANT CORNER CELLS
+    if (cells[4] !== '' && shouldPlay && cells.some(isVacant)) {
+      const possibleCells = [cells[0], cells[2], cells[6], cells[8]]
+      const vacantCellIndex = []
+      for (let i = 0; i < 4; i++) {
+        if (possibleCells[i] === '') {
+          vacantCellIndex.push(i)
+        }
+      }
+      const randomNum = Math.floor(Math.random() * vacantCellIndex.length)
+      switch (vacantCellIndex[randomNum]) {
+        case 0:
+          cells[0] = 'o'
+          ui.putO(0, true)
+          shouldPlay = false
+          break
+        case 1:
+          cells[2] = 'o'
+          ui.putO(2, true)
+          shouldPlay = false
+          break
+        case 2:
+          cells[6] = 'o'
+          ui.putO(6, true)
+          shouldPlay = false
+          break
+        case 3:
+          cells[8] = 'o'
+          ui.putO(8, true)
+          shouldPlay = false
+          break
+        default:
+          shouldPlay = true
       }
     }
-    const randomNum = Math.floor(Math.random() * vacantCellIndex.length)
-    switch (vacantCellIndex[randomNum]) {
-      case 0:
-        cells[0] = 'o'
-        ui.putO(0)
-        shouldPlay = false
-        break
-      case 1:
-        cells[2] = 'o'
-        ui.putO(2)
-        shouldPlay = false
-        break
-      case 2:
-        cells[6] = 'o'
-        ui.putO(6)
-        shouldPlay = false
-        break
-      case 3:
-        cells[8] = 'o'
-        ui.putO(8)
-        shouldPlay = false
-        break
-      default:
-        shouldPlay = true
-    }
-  }
 
-  if (shouldPlay && cells.some(isVacant)) {
+    if (shouldPlay && cells.some(isVacant)) {
+      let randomNum = 0
+      const generator = () => {
+        randomNum = Math.floor(Math.random() * 9)
+        if (cells[randomNum] === '') {
+          cells[randomNum] = 'o'
+          ui.putO(randomNum, true)
+        } else {
+          generator()
+        }
+      }
+      generator()
+    }
+    $('.box').on('click', makeMove)
+  }
+}
+
+const botPlayEasy = () => {
+  if (!isWinner) {
+    $('.box').off('click')
     let randomNum = 0
     const generator = () => {
       randomNum = Math.floor(Math.random() * 9)
       if (cells[randomNum] === '') {
         cells[randomNum] = 'o'
-        ui.putO(randomNum)
+        ui.putO(randomNum, true)
       } else {
         generator()
       }
     }
     generator()
+    $('.box').on('click', makeMove)
   }
-  $('.box').on('click', makeMove)
-}
-
-const botPlayEasy = () => {
-  $('.box').off('click')
-  let randomNum = 0
-  const generator = () => {
-    randomNum = Math.floor(Math.random() * 9)
-    if (cells[randomNum] === '') {
-      cells[randomNum] = 'o'
-      ui.putO(randomNum)
-    } else {
-      generator()
-    }
-  }
-  generator()
-  $('.box').on('click', makeMove)
 }
 
 // Function to find winner
@@ -192,6 +203,7 @@ const whoWon = function (id) {
     // if there is a match
     if (trackValue === 'xxx' || trackValue === 'ooo') {
       // 3rd parameter show this is a bot game
+      isWinner = true
       ui.onWinner(winner, track, true)
       break
       /* If the last move was the winner move, break would end the condition here.

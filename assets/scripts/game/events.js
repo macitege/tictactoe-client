@@ -104,7 +104,7 @@ const onMove = (event, id, isGameOver) => {
 const showMenu = () => {
   $('#game-board').html('')
   $('#multiplayer, #play-against-ai').show()
-  $('#back-button, #reset-button, #easy, #hard').hide()
+  $('#back-button, #back-to-menu, #reset-button, #easy, #hard').hide()
   $('#message, #message-game-info, #message-game').text('')
 }
 

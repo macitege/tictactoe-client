@@ -6,6 +6,7 @@ const gameEvents = require('./game/events.js')
 const multiPlayer = require('./game/multiplayer-events.js')
 const ui = require('./game/ui')
 const gameLogic = require('./game/game-logic.js')
+const bot = require('./game/bot')
 // These jQuerys must happen before everything to ensure nothing will appear
 // on the page that are not supposed to appear. That's why they are seperated.
 $('#account-wrapper').hide()
@@ -37,12 +38,30 @@ $(() => {
         $('#message-game').html('<p>X Starts</p>')
       })
     } else {
-      gameLogic.setGame('ai', false)
-      $('#back-button, #reset-button').show()
-      $('#reset-button').on('click', () => {
-        $('#message-game').html('<p>Human Starts</p>')
-        gameLogic.setGame('ai', false)
+      $('#easy, #hard').show().on('click', (event) => {
+        if (event.target.id === 'hard') {
+          $('#easy, #hard, #back-button').hide()
+          $('#reset-button').show()
+          $('#message-game').html('<p>Human Starts</p>')
+          gameLogic.setGame('ai', false, 'hard')
+          $('#reset-button').on('click', () => {
+            $('#message-game').html('<p>Human Starts</p>')
+            gameLogic.setGame('ai', false, 'hard')
+          })
+        } else {
+          $('#easy, #hard, #back-button').hide()
+          $('#reset-button').show()
+          $('#message-game').html('<p>Human Starts</p>')
+          gameLogic.setGame('ai', false, 'easy')
+
+          $('#reset-button').on('click', () => {
+            $('#message-game').html('<p>Human Starts</p>')
+            gameLogic.setGame('ai', false, 'easy')
+          })
+        }
       })
+
+      $('#back-button').show()
     }
 
     $('#multiplayer, #play-against-ai').hide()

@@ -25,16 +25,24 @@ const setBoard = function () {
 }
 
 // Put x on the cell
-const putX = function (id) {
+const putX = function (id, ai) {
   $('#' + id).html('<p>x</p>')
   // Inform players
-  $('#message-game').html('<p>O\'s Turn</p>')
+  if (ai) {
+    $('#message-game').html('<p>AI\'s Turn...</p>')
+  } else {
+    $('#message-game').html('<p>O\'s Turn</p>')
+  }
 }
 
 // Put o and inform players
-const putO = function (id) {
+const putO = function (id, ai) {
   $('#' + id).html('<p>o</p>')
-  $('#message-game').html('<p>X\'s Turn</p>')
+  if (ai) {
+    $('#message-game').html('<p>Human\'s Turn...</p>')
+  } else {
+    $('#message-game').html('<p>X\'s Turn</p>')
+  }
 }
 
 // When there is winner
