@@ -103,8 +103,8 @@ body {
 .game-board {
   background-color: $game-board-bg-color;
   border-radius: 5px;
-  height: 300px;
-  width: 300px;
+  height: 400px;
+  width: 400px;
   margin-top: 10px;
   display: flex;
 
@@ -152,11 +152,11 @@ body {
   cursor: pointer;
   display: flex;
   font-family: 'Indie Flower', fantasy;
-  font-size: 80px;
-  height: 100px;
+  font-size: 100px;
+  height: calc(400px/3);
   justify-content: center;
   transition: .1s;
-  width: 100px;
+  width: calc(400px/3);
   z-index: 3;
 
   p {
@@ -319,7 +319,7 @@ a {
 //
 // }
 
-@media screen and (max-width: 330px) {
+@media screen and (max-width: 410px) {
   .message > p {
     font-size: 12px;
   }
@@ -335,14 +335,14 @@ a {
 
   .player-menu,
   .game-board {
-    height: 250px;
-    width: 250px;
+    height: 280px;
+    width: 280px;
   }
 
   .box {
     font-size: $square-dimensions * .5;
-    height: calc(250px/3);
-    width: calc(250px/3);
+    height: calc(280px/3);
+    width: calc(280px/3);
   }
 
   .message {
