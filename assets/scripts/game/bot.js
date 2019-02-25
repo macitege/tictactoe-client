@@ -121,31 +121,47 @@ const botPlayHard = () => {
 
     // IF THERE IS O IN THE MIDDLE CELL PUT O ONE OF THE CELLS 1,3,5,7
     if (cells[4] === 'o' && shouldPlay && cells.some(isVacant)) {
-      const possibleCells = [cells[1], cells[3], cells[5], cells[7]]
-      const vacantCellIndex = []
+
+      // TODO -
+      // // IF THERE IS TWO X IN THE MIDDLE CELL OF ADJACENT EDGES PUT O AT COMMON CORNER
+            //   const pos = [cells[1], cells[3], cells[7], cells[5]]
+            //   if (pos.join('') === 'xx') {
+            //     const tracks =[]
+            //     for (let i = 0; i < 4; i++) {
+            //       if (pos[i] == 'x') {
+            //         tracks.push(pos[i])
+            //       }
+            //     }
+            //
+            //   }
+            // }
+
+
+      const possibleCells1 = [cells[1], cells[3], cells[5], cells[7]]
+      const vacantCellIndex1 = []
       for (let i = 0; i < 4; i++) {
-        if (possibleCells[i] === '') {
-          vacantCellIndex.push(i)
+        if (possibleCells1[i] === '') {
+          vacantCellIndex1.push(i)
         }
       }
-      const randomNum = Math.floor(Math.random() * vacantCellIndex.length)
-      switch (vacantCellIndex[randomNum]) {
-        case 1:
+      const randomNum = Math.floor(Math.random() * vacantCellIndex1.length)
+      switch (vacantCellIndex1[randomNum]) {
+        case 0:
           cells[1] = 'o'
           ui.putO(1, true)
           shouldPlay = false
           break
-        case 3:
+        case 1:
           cells[3] = 'o'
           ui.putO(3, true)
           shouldPlay = false
           break
-        case 5:
+        case 2:
           cells[5] = 'o'
           ui.putO(5, true)
           shouldPlay = false
           break
-        case 7:
+        case 3:
           cells[7] = 'o'
           ui.putO(7, true)
           shouldPlay = false
@@ -157,6 +173,7 @@ const botPlayHard = () => {
 
     // IF MIDDLE CELL IS OCCUPIED PUT ON ANY OF VACANT CORNER CELLS
     if (cells[4] === 'x' && shouldPlay && cells.some(isVacant)) {
+      console.log('1')
       const possibleCells = [cells[0], cells[2], cells[6], cells[8]]
       const vacantCellIndex = []
       for (let i = 0; i < 4; i++) {
