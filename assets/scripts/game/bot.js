@@ -31,7 +31,6 @@ const isSame = (acc, curr) => acc + curr
 
 // Function that allows user to make move
 const makeMove = function (event, level) {
-  console.log(cells)
   $('.box').off('click')
   // Played cell's ID
   const id = event.target.id
@@ -76,7 +75,6 @@ const makeMove = function (event, level) {
 
 // AI BOT
 const botPlayHard = () => {
-  console.log(cells)
   if (!isWinner) {
     let shouldPlay = true
     const tracksArr = []
@@ -126,8 +124,6 @@ const botPlayHard = () => {
       const possibleCells = [cells[1], cells[3], cells[5], cells[7]]
       const vacantCellIndex = []
       for (let i = 0; i < 4; i++) {
-        console.log(cells)
-        console.log(possibleCells[i])
         if (possibleCells[i] === '') {
           vacantCellIndex.push(i)
         }
@@ -226,7 +222,7 @@ const botPlayEasy = () => {
       }
     }
     generator()
-      $('.box').on('click', (event) => { makeMove(event, 'easy') })
+    $('.box').on('click', (event) => { makeMove(event, 'easy') })
   }
 }
 
