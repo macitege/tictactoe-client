@@ -5,6 +5,7 @@ const ui = require('./ui')
 // Array  that represents cells on the game board
 let isWinner = false
 let cells = ['', '', '', '', '', '', '', '', '']
+
 const resetBoardHistory = () => {
   isWinner = false
   cells = ['', '', '', '', '', '', '', '', '']
@@ -30,10 +31,11 @@ const isSame = (acc, curr) => acc + curr
 
 // Function that allows user to make move
 const makeMove = function (event, level) {
+  console.log(cells)
   $('.box').off('click')
   // Played cell's ID
   const id = event.target.id
-  // Condition to check if the box is empty and who wast the last player?
+  // Condition to check if the box is empty and who was the last player?
   if (cells[id] !== '') {
     ui.alertPlayer()
     $('.box').on('click', makeMove)
@@ -74,6 +76,7 @@ const makeMove = function (event, level) {
 
 // AI BOT
 const botPlayHard = () => {
+  console.log(cells)
   if (!isWinner) {
     let shouldPlay = true
     const tracksArr = []
@@ -118,41 +121,43 @@ const botPlayHard = () => {
       shouldPlay = false
     }
 
-    // IF THERE IS O IN THE MIDDLE CELL PUT O ONE OF THE CELLS 1,3,5,7
-    if (cells[4] === 'o' && shouldPlay) {
-      const possibleCells = [cells[1], cells[3], cells[5], cells[7]]
-      const vacantCellIndex = []
-      for (let i = 0; i < 4; i++) {
-        if (possibleCells[i] === '') {
-          vacantCellIndex.push(i)
-        }
-      }
-      const randomNum = Math.floor(Math.random() * vacantCellIndex.length)
-      switch (vacantCellIndex[randomNum]) {
-        case 1:
-          cells[1] = 'o'
-          ui.putO(1, true)
-          shouldPlay = false
-          break
-        case 3:
-          cells[3] = 'o'
-          ui.putO(3, true)
-          shouldPlay = false
-          break
-        case 5:
-          cells[5] = 'o'
-          ui.putO(5, true)
-          shouldPlay = false
-          break
-        case 7:
-          cells[7] = 'o'
-          ui.putO(7, true)
-          shouldPlay = false
-          break
-        default:
-          shouldPlay = true
-      }
-    }
+    // // IF THERE IS O IN THE MIDDLE CELL PUT O ONE OF THE CELLS 1,3,5,7
+    // if (cells[4] === 'o' && shouldPlay && cells.some(isVacant)) {
+    //   const possibleCells = [cells[1], cells[3], cells[5], cells[7]]
+    //   const vacantCellIndex = []
+    //   for (let i = 0; i < 4; i++) {
+    //     console.log(cells)
+    //     console.log(possibleCells[i])
+    //     if (possibleCells[i] === '') {
+    //       vacantCellIndex.push(i)
+    //     }
+    //   }
+    //   const randomNum = Math.floor(Math.random() * vacantCellIndex.length)
+    //   switch (vacantCellIndex[randomNum]) {
+    //     case 1:
+    //       cells[1] = 'o'
+    //       ui.putO(1, true)
+    //       shouldPlay = false
+    //       break
+    //     case 3:
+    //       cells[3] = 'o'
+    //       ui.putO(3, true)
+    //       shouldPlay = false
+    //       break
+    //     case 5:
+    //       cells[5] = 'o'
+    //       ui.putO(5, true)
+    //       shouldPlay = false
+    //       break
+    //     case 7:
+    //       cells[7] = 'o'
+    //       ui.putO(7, true)
+    //       shouldPlay = false
+    //       break
+    //     default:
+    //       shouldPlay = true
+    //   }
+    // }
 
     // IF MIDDLE CELL IS OCCUPIED PUT ON ANY OF VACANT CORNER CELLS
     if (cells[4] === 'x' && shouldPlay && cells.some(isVacant)) {
